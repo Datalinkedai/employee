@@ -5,7 +5,8 @@ package com.datalinkedai.employee.domain.enumeration;
  */
 public enum Status {
     ACTIVE("active"),
-    INACTIVE("inactive");
+    INACTIVE("inactive"),
+    DELETED("deleted");
 
     private final String value;
 

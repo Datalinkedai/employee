@@ -3,7 +3,8 @@
     "Status": {
       "null": "",
       "ACTIVE": "active",
-      "INACTIVE": "inactive"
+      "INACTIVE": "inactive",
+      "DELETED": "deleted"
     }
   }
 }
