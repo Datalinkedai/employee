@@ -1,0 +1,30 @@
+{
+  "employeeApp": {
+    "tested": {
+      "home": {
+        "title": "Testeds",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "కొత్త Tested  సృష్టించండి",
+        "createOrEditLabel": "Tested సృష్టించండి లేదా సవరించండి",
+        "notFound": "No Testeds found"
+      },
+      "created": "{{ param }} ఐడీ తో ఒక కొత్త Tested సృష్టించబడినది",
+      "updated": "{{ param }} ఐడీ తో ఒక కొత్త Tested సవరించబడినది",
+      "deleted": "{{ param }} ఐడీ తో ఒక కొత్త Tested తొలగించబడినది",
+      "delete": {
+        "question": "మీరు Tested {{ id }} ఖచ్చితంగా తొలగించాలనుకుంటున్నారా?"
+      },
+      "detail": {
+        "title": "Tested"
+      },
+      "id": "ID",
+      "testName": "Test Name",
+      "timeToComplete": "Time To Complete",
+      "totalQuestions": "Total Questions",
+      "randomize": "Randomize",
+      "passingPrcnt": "Passing Prcnt",
+      "expiryMonths": "Expiry Months",
+      "questionList": "Question List"
+    }
+  }
+}

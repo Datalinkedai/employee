@@ -1,0 +1,49 @@
+{
+  "applications": "*",
+  "changelogDate": "20220725204306",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "knowledge",
+  "fields": [
+    {
+      "fieldName": "result",
+      "fieldType": "Double",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "100",
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "testTaken",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "certificate",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Knowledge",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "tested",
+      "otherEntityRelationshipName": "knowledge",
+      "ownerSide": true,
+      "relationshipName": "tests",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "candidate",
+      "otherEntityRelationshipName": "knowledge",
+      "ownerSide": true,
+      "relationshipName": "candidateTaken",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

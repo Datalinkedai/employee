@@ -1,0 +1,53 @@
+{
+  "applications": "*",
+  "changelogDate": "20220725204305",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "tested",
+  "fields": [
+    {
+      "fieldName": "testName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "timeToComplete",
+      "fieldType": "Duration"
+    },
+    {
+      "fieldName": "totalQuestions",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "randomize",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "passingPrcnt",
+      "fieldType": "Double",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "100",
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "expiryMonths",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Tested",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "questions",
+      "otherEntityRelationshipName": "tested",
+      "relationshipName": "questionList",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

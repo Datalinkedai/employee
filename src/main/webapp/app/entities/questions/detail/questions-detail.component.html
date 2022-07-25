@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="questions">
+      <h2 data-cy="questionsDetailsHeading"><span jhiTranslate="employeeApp.questions.detail.title">Questions</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ questions.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.questions.questionName">Question Name</span></dt>
+        <dd>
+          <span>{{ questions.questionName }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.questions.answerType">Answer Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'employeeApp.AnswerType.' + questions.answerType }}">{{ questions.answerType }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.questions.imageLink">Image Link</span></dt>
+        <dd>
+          <div *ngIf="questions.imageLink">
+            <a (click)="openFile(questions.imageLink, questions.imageLinkContentType)">
+              <img
+                [src]="'data:' + questions.imageLinkContentType + ';base64,' + questions.imageLink"
+                style="max-width: 100%"
+                alt="questions image"
+              />
+            </a>
+            {{ questions.imageLinkContentType }}, {{ byteSize(questions.imageLink) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.questions.tested">Tested</span></dt>
+        <dd>
+          <div *ngIf="questions.tested">
+            <a [routerLink]="['/tested', questions.tested?.id, 'view']">{{ questions.tested?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/questions', questions.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

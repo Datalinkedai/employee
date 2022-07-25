@@ -1,0 +1,165 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-documents-heading" data-cy="DocumentsCreateUpdateHeading" jhiTranslate="employeeApp.documents.home.createOrEditLabel">
+        Create or edit a Documents
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.documents.documentType" for="field_documentType">Document Type</label>
+          <select class="form-control" name="documentType" formControlName="documentType" id="field_documentType" data-cy="documentType">
+            <option [ngValue]="null">{{ 'employeeApp.DocumentType.null' | translate }}</option>
+            <option *ngFor="let documentType of documentTypeValues" [value]="documentType">
+              {{ 'employeeApp.DocumentType.' + documentType | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="editForm.get('documentType')!.invalid && (editForm.get('documentType')!.dirty || editForm.get('documentType')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('documentType')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.documents.document" for="field_document">Document</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('documentContentType')!.value + ';base64,' + editForm.get('document')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('document')!.value"
+              alt="documents image"
+            />
+            <div *ngIf="editForm.get('document')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('documentContentType')!.value }}, {{ byteSize(editForm.get('document')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('document', 'documentContentType', 'file_document')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_document"
+              data-cy="document"
+              (change)="setFileData($event, 'document', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="document" id="field_document" data-cy="document" formControlName="document" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="documentContentType"
+            id="field_documentContentType"
+            formControlName="documentContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.documents.documentLink" for="field_documentLink">Document Link</label>
+          <input
+            type="text"
+            class="form-control"
+            name="documentLink"
+            id="field_documentLink"
+            data-cy="documentLink"
+            formControlName="documentLink"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.documents.documentExpiry" for="field_documentExpiry">Document Expiry</label>
+          <div class="input-group">
+            <input
+              id="field_documentExpiry"
+              data-cy="documentExpiry"
+              type="text"
+              class="form-control"
+              name="documentExpiry"
+              ngbDatepicker
+              #documentExpiryDp="ngbDatepicker"
+              formControlName="documentExpiry"
+            />
+            <button type="button" class="btn btn-secondary" (click)="documentExpiryDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.documents.verified" for="field_verified">Verified</label>
+          <input type="checkbox" class="form-check" name="verified" id="field_verified" data-cy="verified" formControlName="verified" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.documents.fromCandidate" for="field_fromCandidate">From Candidate</label>
+          <select
+            class="form-control"
+            id="field_fromCandidate"
+            data-cy="fromCandidate"
+            name="fromCandidate"
+            formControlName="fromCandidate"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                candidateOption.id === editForm.get('fromCandidate')!.value?.id ? editForm.get('fromCandidate')!.value : candidateOption
+              "
+              *ngFor="let candidateOption of fromCandidatesCollection; trackBy: trackCandidateById"
+            >
+              {{ candidateOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.documents.verifiedBy" for="field_verifiedBy">Verified By</label>
+          <select class="form-control" id="field_verifiedBy" data-cy="verifiedBy" name="verifiedBy" formControlName="verifiedBy">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="candidateOption.id === editForm.get('verifiedBy')!.value?.id ? editForm.get('verifiedBy')!.value : candidateOption"
+              *ngFor="let candidateOption of verifiedBiesCollection; trackBy: trackCandidateById"
+            >
+              {{ candidateOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

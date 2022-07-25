@@ -1,0 +1,30 @@
+{
+  "employeeApp": {
+    "documents": {
+      "home": {
+        "title": "Documents",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Documents बनाएँ",
+        "createOrEditLabel": "Documents बनाएँ या संपादित करें",
+        "notFound": "No Documents found"
+      },
+      "created": "एक नया Documents [identifier: {{ param }}] तैयार है",
+      "updated": "एक Documents [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Documents [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Documents [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Documents"
+      },
+      "id": "ID",
+      "documentType": "Document Type",
+      "document": "Document",
+      "documentLink": "Document Link",
+      "documentExpiry": "Document Expiry",
+      "verified": "Verified",
+      "fromCandidate": "From Candidate",
+      "verifiedBy": "Verified By"
+    }
+  }
+}

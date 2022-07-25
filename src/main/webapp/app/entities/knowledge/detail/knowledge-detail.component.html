@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="knowledge">
+      <h2 data-cy="knowledgeDetailsHeading"><span jhiTranslate="employeeApp.knowledge.detail.title">Knowledge</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ knowledge.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.knowledge.result">Result</span></dt>
+        <dd>
+          <span>{{ knowledge.result }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.knowledge.testTaken">Test Taken</span></dt>
+        <dd>
+          <span>{{ knowledge.testTaken | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.knowledge.certificate">Certificate</span></dt>
+        <dd>
+          <div *ngIf="knowledge.certificate">
+            <a (click)="openFile(knowledge.certificate, knowledge.certificateContentType)">
+              <img
+                [src]="'data:' + knowledge.certificateContentType + ';base64,' + knowledge.certificate"
+                style="max-width: 100%"
+                alt="knowledge image"
+              />
+            </a>
+            {{ knowledge.certificateContentType }}, {{ byteSize(knowledge.certificate) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.knowledge.tests">Tests</span></dt>
+        <dd>
+          <div *ngIf="knowledge.tests">
+            <a [routerLink]="['/tested', knowledge.tests?.id, 'view']">{{ knowledge.tests?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.knowledge.candidateTaken">Candidate Taken</span></dt>
+        <dd>
+          <div *ngIf="knowledge.candidateTaken">
+            <a [routerLink]="['/candidate', knowledge.candidateTaken?.id, 'view']">{{ knowledge.candidateTaken?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/knowledge', knowledge.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

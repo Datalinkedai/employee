@@ -1,0 +1,55 @@
+{
+  "applications": "*",
+  "changelogDate": "20220725204308",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "documents",
+  "fields": [
+    {
+      "fieldName": "documentType",
+      "fieldType": "DocumentType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "IMAGE (image),CERTIFICATE (certificate)"
+    },
+    {
+      "fieldName": "document",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "documentLink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "documentExpiry",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "verified",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Documents",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "candidate",
+      "otherEntityRelationshipName": "documents",
+      "ownerSide": true,
+      "relationshipName": "fromCandidate",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "candidate",
+      "otherEntityRelationshipName": "documents",
+      "ownerSide": true,
+      "relationshipName": "verifiedBy",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

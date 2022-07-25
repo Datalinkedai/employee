@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="post">
+      <h2 data-cy="postDetailsHeading"><span jhiTranslate="employeeApp.post.detail.title">Post</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ post.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.post.postName">Post Name</span></dt>
+        <dd>
+          <span>{{ post.postName }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.post.description">Description</span></dt>
+        <dd>
+          <span>{{ post.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.post.minimumExperience">Minimum Experience</span></dt>
+        <dd>
+          <span>{{ post.minimumExperience }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.post.maximumExperience">Maximum Experience</span></dt>
+        <dd>
+          <span>{{ post.maximumExperience }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.post.roles">Roles</span></dt>
+        <dd>
+          <span>{{ post.roles }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.post.responsibility">Responsibility</span></dt>
+        <dd>
+          <span>{{ post.responsibility }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.post.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'employeeApp.Status.' + post.status }}">{{ post.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.post.typeOfEmployment">Type Of Employment</span></dt>
+        <dd>
+          <span>{{ post.typeOfEmployment }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.post.postedDate">Posted Date</span></dt>
+        <dd>
+          <span>{{ post.postedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.post.postedBy">Posted By</span></dt>
+        <dd>
+          <div *ngIf="post.postedBy">
+            <a [routerLink]="['/candidate', post.postedBy?.id, 'view']">{{ post.postedBy?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/post', post.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

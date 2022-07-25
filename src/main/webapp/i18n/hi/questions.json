@@ -1,0 +1,28 @@
+{
+  "employeeApp": {
+    "questions": {
+      "home": {
+        "title": "Questions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Questions बनाएँ",
+        "createOrEditLabel": "Questions बनाएँ या संपादित करें",
+        "notFound": "No Questions found"
+      },
+      "created": "एक नया Questions [identifier: {{ param }}] तैयार है",
+      "updated": "एक Questions [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Questions [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Questions [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Questions"
+      },
+      "id": "ID",
+      "questionName": "Question Name",
+      "answerType": "Answer Type",
+      "imageLink": "Image Link",
+      "optionList": "Option List",
+      "tested": "Tested"
+    }
+  }
+}

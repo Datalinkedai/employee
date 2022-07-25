@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="tested">
+      <h2 data-cy="testedDetailsHeading"><span jhiTranslate="employeeApp.tested.detail.title">Tested</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ tested.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.tested.testName">Test Name</span></dt>
+        <dd>
+          <span>{{ tested.testName }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.tested.timeToComplete">Time To Complete</span></dt>
+        <dd>
+          <span>{{ tested.timeToComplete | duration }} ({{ tested.timeToComplete }})</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.tested.totalQuestions">Total Questions</span></dt>
+        <dd>
+          <span>{{ tested.totalQuestions }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.tested.randomize">Randomize</span></dt>
+        <dd>
+          <span>{{ tested.randomize }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.tested.passingPrcnt">Passing Prcnt</span></dt>
+        <dd>
+          <span>{{ tested.passingPrcnt }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.tested.expiryMonths">Expiry Months</span></dt>
+        <dd>
+          <span>{{ tested.expiryMonths }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/tested', tested.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

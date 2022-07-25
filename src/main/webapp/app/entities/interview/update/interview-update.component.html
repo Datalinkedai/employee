@@ -1,0 +1,227 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-interview-heading" data-cy="InterviewCreateUpdateHeading" jhiTranslate="employeeApp.interview.home.createOrEditLabel">
+        Create or edit a Interview
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.interviewName" for="field_interviewName">Interview Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="interviewName"
+            id="field_interviewName"
+            data-cy="interviewName"
+            formControlName="interviewName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.scheduledDate" for="field_scheduledDate">Scheduled Date</label>
+          <div class="input-group">
+            <input
+              id="field_scheduledDate"
+              data-cy="scheduledDate"
+              type="text"
+              class="form-control"
+              name="scheduledDate"
+              ngbDatepicker
+              #scheduledDateDp="ngbDatepicker"
+              formControlName="scheduledDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="scheduledDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('scheduledDate')!.invalid && (editForm.get('scheduledDate')!.dirty || editForm.get('scheduledDate')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('scheduledDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.startTime" for="field_startTime">Start Time</label>
+          <div class="d-flex">
+            <input
+              id="field_startTime"
+              data-cy="startTime"
+              type="datetime-local"
+              class="form-control"
+              name="startTime"
+              formControlName="startTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.endTime" for="field_endTime">End Time</label>
+          <div class="d-flex">
+            <input
+              id="field_endTime"
+              data-cy="endTime"
+              type="datetime-local"
+              class="form-control"
+              name="endTime"
+              formControlName="endTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.resceduled" for="field_resceduled">Resceduled</label>
+          <input
+            type="number"
+            class="form-control"
+            name="resceduled"
+            id="field_resceduled"
+            data-cy="resceduled"
+            formControlName="resceduled"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleDate" for="field_rescheduleDate">Reschedule Date</label>
+          <div class="input-group">
+            <input
+              id="field_rescheduleDate"
+              data-cy="rescheduleDate"
+              type="text"
+              class="form-control"
+              name="rescheduleDate"
+              ngbDatepicker
+              #rescheduleDateDp="ngbDatepicker"
+              formControlName="rescheduleDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="rescheduleDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleStartTime" for="field_rescheduleStartTime"
+            >Reschedule Start Time</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_rescheduleStartTime"
+              data-cy="rescheduleStartTime"
+              type="datetime-local"
+              class="form-control"
+              name="rescheduleStartTime"
+              formControlName="rescheduleStartTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleEndTIme" for="field_rescheduleEndTIme"
+            >Reschedule End T Ime</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_rescheduleEndTIme"
+              data-cy="rescheduleEndTIme"
+              type="datetime-local"
+              class="form-control"
+              name="rescheduleEndTIme"
+              formControlName="rescheduleEndTIme"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleApproved" for="field_rescheduleApproved"
+            >Reschedule Approved</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="rescheduleApproved"
+            id="field_rescheduleApproved"
+            data-cy="rescheduleApproved"
+            formControlName="rescheduleApproved"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.interviewBy" for="field_interviewBy">Interview By</label>
+          <select class="form-control" id="field_interviewBy" data-cy="interviewBy" name="interviewBy" formControlName="interviewBy">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                candidateOption.id === editForm.get('interviewBy')!.value?.id ? editForm.get('interviewBy')!.value : candidateOption
+              "
+              *ngFor="let candidateOption of interviewBiesCollection; trackBy: trackCandidateById"
+            >
+              {{ candidateOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleApprovedBy" for="field_rescheduleApprovedBy"
+            >Reschedule Approved By</label
+          >
+          <select
+            class="form-control"
+            id="field_rescheduleApprovedBy"
+            data-cy="rescheduleApprovedBy"
+            name="rescheduleApprovedBy"
+            formControlName="rescheduleApprovedBy"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                candidateOption.id === editForm.get('rescheduleApprovedBy')!.value?.id
+                  ? editForm.get('rescheduleApprovedBy')!.value
+                  : candidateOption
+              "
+              *ngFor="let candidateOption of rescheduleApprovedBiesCollection; trackBy: trackCandidateById"
+            >
+              {{ candidateOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

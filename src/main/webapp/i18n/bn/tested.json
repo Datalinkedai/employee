@@ -1,0 +1,30 @@
+{
+  "employeeApp": {
+    "tested": {
+      "home": {
+        "title": "Testeds",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Tested",
+        "createOrEditLabel": "Create or edit a Tested",
+        "notFound": "No Testeds found"
+      },
+      "created": "A new Tested is created with identifier {{ param }}",
+      "updated": "A Tested is updated with identifier {{ param }}",
+      "deleted": "A Tested is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tested {{ id }}?"
+      },
+      "detail": {
+        "title": "Tested"
+      },
+      "id": "ID",
+      "testName": "Test Name",
+      "timeToComplete": "Time To Complete",
+      "totalQuestions": "Total Questions",
+      "randomize": "Randomize",
+      "passingPrcnt": "Passing Prcnt",
+      "expiryMonths": "Expiry Months",
+      "questionList": "Question List"
+    }
+  }
+}

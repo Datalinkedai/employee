@@ -1,0 +1,33 @@
+{
+  "employeeApp": {
+    "post": {
+      "home": {
+        "title": "Posts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Post",
+        "createOrEditLabel": "Create or edit a Post",
+        "notFound": "No Posts found"
+      },
+      "created": "A new Post is created with identifier {{ param }}",
+      "updated": "A Post is updated with identifier {{ param }}",
+      "deleted": "A Post is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Post {{ id }}?"
+      },
+      "detail": {
+        "title": "Post"
+      },
+      "id": "ID",
+      "postName": "Post Name",
+      "description": "Description",
+      "minimumExperience": "Minimum Experience",
+      "maximumExperience": "Maximum Experience",
+      "roles": "Roles",
+      "responsibility": "Responsibility",
+      "status": "Status",
+      "typeOfEmployment": "Type Of Employment",
+      "postedDate": "Posted Date",
+      "postedBy": "Posted By"
+    }
+  }
+}

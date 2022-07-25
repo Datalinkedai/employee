@@ -1,0 +1,30 @@
+{
+  "employeeApp": {
+    "tested": {
+      "home": {
+        "title": "Testeds",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Tested बनाएँ",
+        "createOrEditLabel": "Tested बनाएँ या संपादित करें",
+        "notFound": "No Testeds found"
+      },
+      "created": "एक नया Tested [identifier: {{ param }}] तैयार है",
+      "updated": "एक Tested [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Tested [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Tested [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Tested"
+      },
+      "id": "ID",
+      "testName": "Test Name",
+      "timeToComplete": "Time To Complete",
+      "totalQuestions": "Total Questions",
+      "randomize": "Randomize",
+      "passingPrcnt": "Passing Prcnt",
+      "expiryMonths": "Expiry Months",
+      "questionList": "Question List"
+    }
+  }
+}

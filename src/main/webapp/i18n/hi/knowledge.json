@@ -1,0 +1,28 @@
+{
+  "employeeApp": {
+    "knowledge": {
+      "home": {
+        "title": "Knowledges",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Knowledge बनाएँ",
+        "createOrEditLabel": "Knowledge बनाएँ या संपादित करें",
+        "notFound": "No Knowledges found"
+      },
+      "created": "एक नया Knowledge [identifier: {{ param }}] तैयार है",
+      "updated": "एक Knowledge [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Knowledge [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Knowledge [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Knowledge"
+      },
+      "id": "ID",
+      "result": "Result",
+      "testTaken": "Test Taken",
+      "certificate": "Certificate",
+      "tests": "Tests",
+      "candidateTaken": "Candidate Taken"
+    }
+  }
+}

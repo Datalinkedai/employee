@@ -1,0 +1,30 @@
+{
+  "employeeApp": {
+    "training": {
+      "home": {
+        "title": "Trainings",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "కొత్త Training  సృష్టించండి",
+        "createOrEditLabel": "Training సృష్టించండి లేదా సవరించండి",
+        "notFound": "No Trainings found"
+      },
+      "created": "{{ param }} ఐడీ తో ఒక కొత్త Training సృష్టించబడినది",
+      "updated": "{{ param }} ఐడీ తో ఒక కొత్త Training సవరించబడినది",
+      "deleted": "{{ param }} ఐడీ తో ఒక కొత్త Training తొలగించబడినది",
+      "delete": {
+        "question": "మీరు Training {{ id }} ఖచ్చితంగా తొలగించాలనుకుంటున్నారా?"
+      },
+      "detail": {
+        "title": "Training"
+      },
+      "id": "ID",
+      "startDate": "Start Date",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "endDate": "End Date",
+      "type": "Type",
+      "repeats": "Repeats",
+      "candidateList": "Candidate List"
+    }
+  }
+}

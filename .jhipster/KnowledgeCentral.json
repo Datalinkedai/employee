@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20220725204307",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "knowledge_central",
+  "fields": [
+    {
+      "fieldName": "averageResult",
+      "fieldType": "Double",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "100",
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "KnowledgeCentral",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "candidate",
+      "otherEntityRelationshipName": "knowledgeCentral",
+      "ownerSide": true,
+      "relationshipName": "candidateTaken",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

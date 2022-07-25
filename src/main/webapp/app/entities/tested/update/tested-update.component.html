@@ -1,0 +1,148 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-tested-heading" data-cy="TestedCreateUpdateHeading" jhiTranslate="employeeApp.tested.home.createOrEditLabel">
+        Create or edit a Tested
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.tested.testName" for="field_testName">Test Name</label>
+          <input type="text" class="form-control" name="testName" id="field_testName" data-cy="testName" formControlName="testName" />
+          <div *ngIf="editForm.get('testName')!.invalid && (editForm.get('testName')!.dirty || editForm.get('testName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('testName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.tested.timeToComplete" for="field_timeToComplete">Time To Complete</label>
+          <input
+            type="text"
+            class="form-control"
+            name="timeToComplete"
+            id="field_timeToComplete"
+            data-cy="timeToComplete"
+            formControlName="timeToComplete"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.tested.totalQuestions" for="field_totalQuestions">Total Questions</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalQuestions"
+            id="field_totalQuestions"
+            data-cy="totalQuestions"
+            formControlName="totalQuestions"
+          />
+          <div
+            *ngIf="
+              editForm.get('totalQuestions')!.invalid && (editForm.get('totalQuestions')!.dirty || editForm.get('totalQuestions')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('totalQuestions')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('totalQuestions')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.tested.randomize" for="field_randomize">Randomize</label>
+          <input type="checkbox" class="form-check" name="randomize" id="field_randomize" data-cy="randomize" formControlName="randomize" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.tested.passingPrcnt" for="field_passingPrcnt">Passing Prcnt</label>
+          <input
+            type="number"
+            class="form-control"
+            name="passingPrcnt"
+            id="field_passingPrcnt"
+            data-cy="passingPrcnt"
+            formControlName="passingPrcnt"
+          />
+          <div
+            *ngIf="editForm.get('passingPrcnt')!.invalid && (editForm.get('passingPrcnt')!.dirty || editForm.get('passingPrcnt')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('passingPrcnt')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('passingPrcnt')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 100 }"
+            >
+              This field cannot be more than 100.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('passingPrcnt')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.tested.expiryMonths" for="field_expiryMonths">Expiry Months</label>
+          <input
+            type="number"
+            class="form-control"
+            name="expiryMonths"
+            id="field_expiryMonths"
+            data-cy="expiryMonths"
+            formControlName="expiryMonths"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

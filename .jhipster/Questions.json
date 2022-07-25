@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20220725204303",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "questions",
+  "fields": [
+    {
+      "fieldName": "questionName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "answerType",
+      "fieldType": "AnswerType",
+      "fieldValues": "MCQ (mcq),TEXT (text)"
+    },
+    {
+      "fieldName": "imageLink",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Questions",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "options",
+      "otherEntityRelationshipName": "questions",
+      "relationshipName": "optionList",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tested",
+      "otherEntityRelationshipName": "questionList",
+      "relationshipName": "tested",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

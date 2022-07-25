@@ -1,0 +1,25 @@
+{
+  "employeeApp": {
+    "options": {
+      "home": {
+        "title": "Options",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Options बनाएँ",
+        "createOrEditLabel": "Options बनाएँ या संपादित करें",
+        "notFound": "No Options found"
+      },
+      "created": "एक नया Options [identifier: {{ param }}] तैयार है",
+      "updated": "एक Options [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Options [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Options [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Options"
+      },
+      "id": "ID",
+      "optionName": "Option Name",
+      "questions": "Questions"
+    }
+  }
+}

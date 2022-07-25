@@ -1,0 +1,69 @@
+{
+  "applications": "*",
+  "changelogDate": "20220725204301",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "interview",
+  "fields": [
+    {
+      "fieldName": "interviewName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "scheduledDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "startTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "resceduled",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rescheduleDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "rescheduleStartTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "rescheduleEndTIme",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "rescheduleApproved",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Interview",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "candidate",
+      "otherEntityRelationshipName": "interview",
+      "ownerSide": true,
+      "relationshipName": "interviewBy",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "candidate",
+      "otherEntityRelationshipName": "interview",
+      "ownerSide": true,
+      "relationshipName": "rescheduleApprovedBy",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

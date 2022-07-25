@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="interview">
+      <h2 data-cy="interviewDetailsHeading"><span jhiTranslate="employeeApp.interview.detail.title">Interview</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ interview.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.interviewName">Interview Name</span></dt>
+        <dd>
+          <span>{{ interview.interviewName }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.scheduledDate">Scheduled Date</span></dt>
+        <dd>
+          <span>{{ interview.scheduledDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.startTime">Start Time</span></dt>
+        <dd>
+          <span>{{ interview.startTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.endTime">End Time</span></dt>
+        <dd>
+          <span>{{ interview.endTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.resceduled">Resceduled</span></dt>
+        <dd>
+          <span>{{ interview.resceduled }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.rescheduleDate">Reschedule Date</span></dt>
+        <dd>
+          <span>{{ interview.rescheduleDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.rescheduleStartTime">Reschedule Start Time</span></dt>
+        <dd>
+          <span>{{ interview.rescheduleStartTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.rescheduleEndTIme">Reschedule End T Ime</span></dt>
+        <dd>
+          <span>{{ interview.rescheduleEndTIme | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.rescheduleApproved">Reschedule Approved</span></dt>
+        <dd>
+          <span>{{ interview.rescheduleApproved }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.interviewBy">Interview By</span></dt>
+        <dd>
+          <div *ngIf="interview.interviewBy">
+            <a [routerLink]="['/candidate', interview.interviewBy?.id, 'view']">{{ interview.interviewBy?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.rescheduleApprovedBy">Reschedule Approved By</span></dt>
+        <dd>
+          <div *ngIf="interview.rescheduleApprovedBy">
+            <a [routerLink]="['/candidate', interview.rescheduleApprovedBy?.id, 'view']">{{ interview.rescheduleApprovedBy?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/interview', interview.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

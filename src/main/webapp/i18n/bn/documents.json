@@ -1,0 +1,30 @@
+{
+  "employeeApp": {
+    "documents": {
+      "home": {
+        "title": "Documents",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Documents",
+        "createOrEditLabel": "Create or edit a Documents",
+        "notFound": "No Documents found"
+      },
+      "created": "A new Documents is created with identifier {{ param }}",
+      "updated": "A Documents is updated with identifier {{ param }}",
+      "deleted": "A Documents is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Documents {{ id }}?"
+      },
+      "detail": {
+        "title": "Documents"
+      },
+      "id": "ID",
+      "documentType": "Document Type",
+      "document": "Document",
+      "documentLink": "Document Link",
+      "documentExpiry": "Document Expiry",
+      "verified": "Verified",
+      "fromCandidate": "From Candidate",
+      "verifiedBy": "Verified By"
+    }
+  }
+}

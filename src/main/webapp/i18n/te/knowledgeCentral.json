@@ -1,0 +1,25 @@
+{
+  "employeeApp": {
+    "knowledgeCentral": {
+      "home": {
+        "title": "Knowledge Centrals",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "కొత్త Knowledge Central  సృష్టించండి",
+        "createOrEditLabel": "Knowledge Central సృష్టించండి లేదా సవరించండి",
+        "notFound": "No Knowledge Centrals found"
+      },
+      "created": "{{ param }} ఐడీ తో ఒక కొత్త Knowledge Central సృష్టించబడినది",
+      "updated": "{{ param }} ఐడీ తో ఒక కొత్త Knowledge Central సవరించబడినది",
+      "deleted": "{{ param }} ఐడీ తో ఒక కొత్త Knowledge Central తొలగించబడినది",
+      "delete": {
+        "question": "మీరు Knowledge Central {{ id }} ఖచ్చితంగా తొలగించాలనుకుంటున్నారా?"
+      },
+      "detail": {
+        "title": "Knowledge Central"
+      },
+      "id": "ID",
+      "averageResult": "Average Result",
+      "candidateTaken": "Candidate Taken"
+    }
+  }
+}

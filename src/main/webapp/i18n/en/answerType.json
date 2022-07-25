@@ -1,0 +1,9 @@
+{
+  "employeeApp": {
+    "AnswerType": {
+      "null": "",
+      "MCQ": "mcq",
+      "TEXT": "text"
+    }
+  }
+}

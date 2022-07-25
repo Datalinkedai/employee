@@ -1,0 +1,25 @@
+{
+  "employeeApp": {
+    "options": {
+      "home": {
+        "title": "Options",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Options",
+        "createOrEditLabel": "Create or edit a Options",
+        "notFound": "No Options found"
+      },
+      "created": "A new Options is created with identifier {{ param }}",
+      "updated": "A Options is updated with identifier {{ param }}",
+      "deleted": "A Options is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Options {{ id }}?"
+      },
+      "detail": {
+        "title": "Options"
+      },
+      "id": "ID",
+      "optionName": "Option Name",
+      "questions": "Questions"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "applications": "*",
+  "changelogDate": "20220725204300",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "candidate",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "pattern"],
+      "fieldValidateRulesPattern": "^[a-zA-Z]+$"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "pattern"],
+      "fieldValidateRulesPattern": "^[a-zA-Z]+$"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "pattern"],
+      "fieldValidateRulesPattern": "^\\d{10}$"
+    },
+    {
+      "fieldName": "userName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "pattern"],
+      "fieldValidateRulesPattern": "^[a-zA-Z0-9_]{3,40}$"
+    },
+    {
+      "fieldName": "eductionQualification",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "resumeLink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "ACTIVE (active),INACTIVE (inactive)"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Candidate",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "candidate",
+      "ownerSide": true,
+      "relationshipName": "internalUser",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

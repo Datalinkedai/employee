@@ -1,0 +1,107 @@
+<div>
+  <h2 id="page-heading" data-cy="DocumentsHeading">
+    <span jhiTranslate="employeeApp.documents.home.title">Documents</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="employeeApp.documents.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-documents"
+        [routerLink]="['/documents/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="employeeApp.documents.home.createLabel"> Create a new Documents </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="documents?.length === 0">
+    <span jhiTranslate="employeeApp.documents.home.notFound">No documents found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="documents && documents.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="employeeApp.documents.documentType">Document Type</span></th>
+          <th scope="col"><span jhiTranslate="employeeApp.documents.document">Document</span></th>
+          <th scope="col"><span jhiTranslate="employeeApp.documents.documentLink">Document Link</span></th>
+          <th scope="col"><span jhiTranslate="employeeApp.documents.documentExpiry">Document Expiry</span></th>
+          <th scope="col"><span jhiTranslate="employeeApp.documents.verified">Verified</span></th>
+          <th scope="col"><span jhiTranslate="employeeApp.documents.fromCandidate">From Candidate</span></th>
+          <th scope="col"><span jhiTranslate="employeeApp.documents.verifiedBy">Verified By</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let documents of documents; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/documents', documents.id, 'view']">{{ documents.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'employeeApp.DocumentType.' + documents.documentType }}">{{ documents.documentType }}</td>
+          <td>
+            <a *ngIf="documents.document" (click)="openFile(documents.document, documents.documentContentType)">
+              <img
+                [src]="'data:' + documents.documentContentType + ';base64,' + documents.document"
+                style="max-height: 30px"
+                alt="documents image"
+              />
+            </a>
+            <span *ngIf="documents.document">{{ documents.documentContentType }}, {{ byteSize(documents.document) }}</span>
+          </td>
+          <td>{{ documents.documentLink }}</td>
+          <td>{{ documents.documentExpiry | formatMediumDate }}</td>
+          <td>{{ documents.verified }}</td>
+          <td>
+            <div *ngIf="documents.fromCandidate">
+              <a [routerLink]="['/candidate', documents.fromCandidate?.id, 'view']">{{ documents.fromCandidate?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="documents.verifiedBy">
+              <a [routerLink]="['/candidate', documents.verifiedBy?.id, 'view']">{{ documents.verifiedBy?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/documents', documents.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/documents', documents.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(documents)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

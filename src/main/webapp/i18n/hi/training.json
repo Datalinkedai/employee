@@ -1,0 +1,30 @@
+{
+  "employeeApp": {
+    "training": {
+      "home": {
+        "title": "Trainings",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Training बनाएँ",
+        "createOrEditLabel": "Training बनाएँ या संपादित करें",
+        "notFound": "No Trainings found"
+      },
+      "created": "एक नया Training [identifier: {{ param }}] तैयार है",
+      "updated": "एक Training [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Training [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Training [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Training"
+      },
+      "id": "ID",
+      "startDate": "Start Date",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "endDate": "End Date",
+      "type": "Type",
+      "repeats": "Repeats",
+      "candidateList": "Candidate List"
+    }
+  }
+}

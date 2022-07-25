@@ -1,0 +1,117 @@
+entity Post {
+  postName String required minlength(5),
+  description String,
+  minimumExperience Double,
+  maximumExperience Double,
+  roles String,
+  responsibility String,
+  status Status,
+  typeOfEmployment String,
+  postedDate Instant
+}
+entity Candidate {
+  firstName String required pattern(/^[a-zA-Z]+$/),
+  lastName String required pattern(/^[a-zA-Z]+$/),
+  phoneNumber String required pattern(/^\d{10}$/),
+  userName String required unique pattern(/^[a-zA-Z0-9_]{3,40}$/),
+  eductionQualification String,
+  resumeLink String,
+  status Status
+}
+entity Interview {
+  interviewName String,
+  scheduledDate LocalDate required,
+  startTime Instant,
+  endTime Instant,
+  resceduled Integer,
+  rescheduleDate LocalDate,
+  rescheduleStartTime Instant,
+  rescheduleEndTIme Instant,
+  rescheduleApproved Boolean
+}
+entity Training {
+  startDate LocalDate required,
+  startTime Instant,
+  endTime Instant,
+  endDate LocalDate required,
+  type String,
+  repeats Boolean
+}
+entity Questions {
+  questionName String,
+  answerType AnswerType,
+  imageLink ImageBlob
+}
+entity Options {
+  optionName String
+}
+enum AnswerType {
+  MCQ(mcq), TEXT(text)
+}
+enum Status {
+  ACTIVE(active), INACTIVE(inactive)
+}
+entity Tested {
+  testName String required,
+  timeToComplete Duration,
+  totalQuestions Integer required,
+  randomize Boolean,
+  passingPrcnt Double min(0) max(100)
+  expiryMonths Double
+}
+entity Knowledge {
+  result Double min(0) max(100),
+  testTaken Instant required,
+  certificate ImageBlob
+}
+entity KnowledgeCentral {
+  averageResult Double min(0) max(100)
+}
+entity Documents {
+  documentType DocumentType required,
+  document ImageBlob,
+  documentLink String,
+  documentExpiry LocalDate,
+  verified Boolean
+}
+enum DocumentType {
+  IMAGE(image), CERTIFICATE(certificate)
+}
+paginate Post with infinite-scroll
+service * with serviceImpl
+relationship OneToOne  {
+  Candidate{internalUser} to User
+}
+relationship ManyToOne {
+  Training{candidateList} to Candidate
+}
+relationship OneToMany {
+  Questions{optionList} to Options
+}
+relationship OneToMany {
+  Tested{questionList} to Questions
+}
+relationship OneToOne {
+  Knowledge{tests} to Tested
+}
+relationship OneToOne {
+  Knowledge{candidateTaken} to Candidate
+}
+relationship OneToOne {
+  KnowledgeCentral{candidateTaken} to Candidate
+}
+relationship OneToOne {
+  Documents{fromCandidate} to Candidate
+}
+relationship OneToOne {
+  Documents{verifiedBy} to Candidate
+}
+relationship OneToOne {
+  Post{postedBy} to Candidate
+}
+relationship OneToOne {
+  Interview{interviewBy} to Candidate
+}
+relationship OneToOne {
+  Interview{rescheduleApprovedBy} to Candidate
+}

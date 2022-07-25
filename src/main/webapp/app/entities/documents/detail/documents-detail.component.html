@@ -1,0 +1,69 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="documents">
+      <h2 data-cy="documentsDetailsHeading"><span jhiTranslate="employeeApp.documents.detail.title">Documents</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ documents.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.documents.documentType">Document Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'employeeApp.DocumentType.' + documents.documentType }}">{{ documents.documentType }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.documents.document">Document</span></dt>
+        <dd>
+          <div *ngIf="documents.document">
+            <a (click)="openFile(documents.document, documents.documentContentType)">
+              <img
+                [src]="'data:' + documents.documentContentType + ';base64,' + documents.document"
+                style="max-width: 100%"
+                alt="documents image"
+              />
+            </a>
+            {{ documents.documentContentType }}, {{ byteSize(documents.document) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.documents.documentLink">Document Link</span></dt>
+        <dd>
+          <span>{{ documents.documentLink }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.documents.documentExpiry">Document Expiry</span></dt>
+        <dd>
+          <span>{{ documents.documentExpiry | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.documents.verified">Verified</span></dt>
+        <dd>
+          <span>{{ documents.verified }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.documents.fromCandidate">From Candidate</span></dt>
+        <dd>
+          <div *ngIf="documents.fromCandidate">
+            <a [routerLink]="['/candidate', documents.fromCandidate?.id, 'view']">{{ documents.fromCandidate?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.documents.verifiedBy">Verified By</span></dt>
+        <dd>
+          <div *ngIf="documents.verifiedBy">
+            <a [routerLink]="['/candidate', documents.verifiedBy?.id, 'view']">{{ documents.verifiedBy?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/documents', documents.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

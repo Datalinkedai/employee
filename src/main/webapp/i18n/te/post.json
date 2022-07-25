@@ -1,0 +1,33 @@
+{
+  "employeeApp": {
+    "post": {
+      "home": {
+        "title": "Posts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "కొత్త Post  సృష్టించండి",
+        "createOrEditLabel": "Post సృష్టించండి లేదా సవరించండి",
+        "notFound": "No Posts found"
+      },
+      "created": "{{ param }} ఐడీ తో ఒక కొత్త Post సృష్టించబడినది",
+      "updated": "{{ param }} ఐడీ తో ఒక కొత్త Post సవరించబడినది",
+      "deleted": "{{ param }} ఐడీ తో ఒక కొత్త Post తొలగించబడినది",
+      "delete": {
+        "question": "మీరు Post {{ id }} ఖచ్చితంగా తొలగించాలనుకుంటున్నారా?"
+      },
+      "detail": {
+        "title": "Post"
+      },
+      "id": "ID",
+      "postName": "Post Name",
+      "description": "Description",
+      "minimumExperience": "Minimum Experience",
+      "maximumExperience": "Maximum Experience",
+      "roles": "Roles",
+      "responsibility": "Responsibility",
+      "status": "Status",
+      "typeOfEmployment": "Type Of Employment",
+      "postedDate": "Posted Date",
+      "postedBy": "Posted By"
+    }
+  }
+}

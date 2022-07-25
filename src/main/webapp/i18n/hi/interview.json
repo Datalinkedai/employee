@@ -1,0 +1,34 @@
+{
+  "employeeApp": {
+    "interview": {
+      "home": {
+        "title": "Interviews",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Interview बनाएँ",
+        "createOrEditLabel": "Interview बनाएँ या संपादित करें",
+        "notFound": "No Interviews found"
+      },
+      "created": "एक नया Interview [identifier: {{ param }}] तैयार है",
+      "updated": "एक Interview [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Interview [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Interview [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Interview"
+      },
+      "id": "ID",
+      "interviewName": "Interview Name",
+      "scheduledDate": "Scheduled Date",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "resceduled": "Resceduled",
+      "rescheduleDate": "Reschedule Date",
+      "rescheduleStartTime": "Reschedule Start Time",
+      "rescheduleEndTIme": "Reschedule End T Ime",
+      "rescheduleApproved": "Reschedule Approved",
+      "interviewBy": "Interview By",
+      "rescheduleApprovedBy": "Reschedule Approved By"
+    }
+  }
+}

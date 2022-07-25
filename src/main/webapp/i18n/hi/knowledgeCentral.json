@@ -1,0 +1,25 @@
+{
+  "employeeApp": {
+    "knowledgeCentral": {
+      "home": {
+        "title": "KnowledgeCentrals",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Knowledge Central बनाएँ",
+        "createOrEditLabel": "Knowledge Central बनाएँ या संपादित करें",
+        "notFound": "No Knowledge Centrals found"
+      },
+      "created": "एक नया Knowledge Central [identifier: {{ param }}] तैयार है",
+      "updated": "एक Knowledge Central [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Knowledge Central [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Knowledge Central [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Knowledge Central"
+      },
+      "id": "ID",
+      "averageResult": "Average Result",
+      "candidateTaken": "Candidate Taken"
+    }
+  }
+}

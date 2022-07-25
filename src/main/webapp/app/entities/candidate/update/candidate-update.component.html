@@ -1,0 +1,176 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-candidate-heading" data-cy="CandidateCreateUpdateHeading" jhiTranslate="employeeApp.candidate.home.createOrEditLabel">
+        Create or edit a Candidate
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.candidate.firstName" for="field_firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+          <div *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('firstName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('firstName')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'First Name' }"
+            >
+              This field should follow pattern for "First Name".
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.candidate.lastName" for="field_lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+          <div *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastName')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Last Name' }"
+            >
+              This field should follow pattern for "Last Name".
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.candidate.phoneNumber" for="field_phoneNumber">Phone Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            id="field_phoneNumber"
+            data-cy="phoneNumber"
+            formControlName="phoneNumber"
+          />
+          <div *ngIf="editForm.get('phoneNumber')!.invalid && (editForm.get('phoneNumber')!.dirty || editForm.get('phoneNumber')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('phoneNumber')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('phoneNumber')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Phone Number' }"
+            >
+              This field should follow pattern for "Phone Number".
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.candidate.userName" for="field_userName">User Name</label>
+          <input type="text" class="form-control" name="userName" id="field_userName" data-cy="userName" formControlName="userName" />
+          <div *ngIf="editForm.get('userName')!.invalid && (editForm.get('userName')!.dirty || editForm.get('userName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('userName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('userName')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'User Name' }"
+            >
+              This field should follow pattern for "User Name".
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.candidate.eductionQualification" for="field_eductionQualification"
+            >Eduction Qualification</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="eductionQualification"
+            id="field_eductionQualification"
+            data-cy="eductionQualification"
+            formControlName="eductionQualification"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.candidate.resumeLink" for="field_resumeLink">Resume Link</label>
+          <input
+            type="text"
+            class="form-control"
+            name="resumeLink"
+            id="field_resumeLink"
+            data-cy="resumeLink"
+            formControlName="resumeLink"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.candidate.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'employeeApp.Status.null' | translate }}</option>
+            <option *ngFor="let status of statusValues" [value]="status">{{ 'employeeApp.Status.' + status | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.candidate.internalUser" for="field_internalUser">Internal User</label>
+          <select class="form-control" id="field_internalUser" data-cy="internalUser" name="internalUser" formControlName="internalUser">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="userOption.id === editForm.get('internalUser')!.value?.id ? editForm.get('internalUser')!.value : userOption"
+              *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
+            >
+              {{ userOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

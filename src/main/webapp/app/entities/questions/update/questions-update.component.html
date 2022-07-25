@@ -1,0 +1,109 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-questions-heading" data-cy="QuestionsCreateUpdateHeading" jhiTranslate="employeeApp.questions.home.createOrEditLabel">
+        Create or edit a Questions
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.questions.questionName" for="field_questionName">Question Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="questionName"
+            id="field_questionName"
+            data-cy="questionName"
+            formControlName="questionName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.questions.answerType" for="field_answerType">Answer Type</label>
+          <select class="form-control" name="answerType" formControlName="answerType" id="field_answerType" data-cy="answerType">
+            <option [ngValue]="null">{{ 'employeeApp.AnswerType.null' | translate }}</option>
+            <option *ngFor="let answerType of answerTypeValues" [value]="answerType">
+              {{ 'employeeApp.AnswerType.' + answerType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.questions.imageLink" for="field_imageLink">Image Link</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('imageLinkContentType')!.value + ';base64,' + editForm.get('imageLink')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('imageLink')!.value"
+              alt="questions image"
+            />
+            <div *ngIf="editForm.get('imageLink')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('imageLinkContentType')!.value }}, {{ byteSize(editForm.get('imageLink')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('imageLink', 'imageLinkContentType', 'file_imageLink')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_imageLink"
+              data-cy="imageLink"
+              (change)="setFileData($event, 'imageLink', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="imageLink" id="field_imageLink" data-cy="imageLink" formControlName="imageLink" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="imageLinkContentType"
+            id="field_imageLinkContentType"
+            formControlName="imageLinkContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.questions.tested" for="field_tested">Tested</label>
+          <select class="form-control" id="field_tested" data-cy="tested" name="tested" formControlName="tested">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="testedOption.id === editForm.get('tested')!.value?.id ? editForm.get('tested')!.value : testedOption"
+              *ngFor="let testedOption of testedsSharedCollection; trackBy: trackTestedById"
+            >
+              {{ testedOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

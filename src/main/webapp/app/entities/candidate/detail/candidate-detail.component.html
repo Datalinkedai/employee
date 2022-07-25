@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="candidate">
+      <h2 data-cy="candidateDetailsHeading"><span jhiTranslate="employeeApp.candidate.detail.title">Candidate</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ candidate.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.candidate.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ candidate.firstName }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.candidate.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ candidate.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.candidate.phoneNumber">Phone Number</span></dt>
+        <dd>
+          <span>{{ candidate.phoneNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.candidate.userName">User Name</span></dt>
+        <dd>
+          <span>{{ candidate.userName }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.candidate.eductionQualification">Eduction Qualification</span></dt>
+        <dd>
+          <span>{{ candidate.eductionQualification }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.candidate.resumeLink">Resume Link</span></dt>
+        <dd>
+          <span>{{ candidate.resumeLink }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.candidate.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'employeeApp.Status.' + candidate.status }}">{{ candidate.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.candidate.internalUser">Internal User</span></dt>
+        <dd>
+          <span>{{ candidate.internalUser?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/candidate', candidate.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

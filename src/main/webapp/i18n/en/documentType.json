@@ -1,0 +1,9 @@
+{
+  "employeeApp": {
+    "DocumentType": {
+      "null": "",
+      "IMAGE": "image",
+      "CERTIFICATE": "certificate"
+    }
+  }
+}

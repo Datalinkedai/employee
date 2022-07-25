@@ -1,0 +1,172 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-knowledge-heading" data-cy="KnowledgeCreateUpdateHeading" jhiTranslate="employeeApp.knowledge.home.createOrEditLabel">
+        Create or edit a Knowledge
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.knowledge.result" for="field_result">Result</label>
+          <input type="number" class="form-control" name="result" id="field_result" data-cy="result" formControlName="result" />
+          <div *ngIf="editForm.get('result')!.invalid && (editForm.get('result')!.dirty || editForm.get('result')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('result')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('result')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 100 }"
+            >
+              This field cannot be more than 100.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('result')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.knowledge.testTaken" for="field_testTaken">Test Taken</label>
+          <div class="d-flex">
+            <input
+              id="field_testTaken"
+              data-cy="testTaken"
+              type="datetime-local"
+              class="form-control"
+              name="testTaken"
+              formControlName="testTaken"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('testTaken')!.invalid && (editForm.get('testTaken')!.dirty || editForm.get('testTaken')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('testTaken')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('testTaken')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.knowledge.certificate" for="field_certificate">Certificate</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('certificateContentType')!.value + ';base64,' + editForm.get('certificate')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('certificate')!.value"
+              alt="knowledge image"
+            />
+            <div *ngIf="editForm.get('certificate')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('certificateContentType')!.value }}, {{ byteSize(editForm.get('certificate')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('certificate', 'certificateContentType', 'file_certificate')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_certificate"
+              data-cy="certificate"
+              (change)="setFileData($event, 'certificate', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="certificate"
+            id="field_certificate"
+            data-cy="certificate"
+            formControlName="certificate"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="certificateContentType"
+            id="field_certificateContentType"
+            formControlName="certificateContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.knowledge.tests" for="field_tests">Tests</label>
+          <select class="form-control" id="field_tests" data-cy="tests" name="tests" formControlName="tests">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="testedOption.id === editForm.get('tests')!.value?.id ? editForm.get('tests')!.value : testedOption"
+              *ngFor="let testedOption of testsCollection; trackBy: trackTestedById"
+            >
+              {{ testedOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.knowledge.candidateTaken" for="field_candidateTaken">Candidate Taken</label>
+          <select
+            class="form-control"
+            id="field_candidateTaken"
+            data-cy="candidateTaken"
+            name="candidateTaken"
+            formControlName="candidateTaken"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                candidateOption.id === editForm.get('candidateTaken')!.value?.id ? editForm.get('candidateTaken')!.value : candidateOption
+              "
+              *ngFor="let candidateOption of candidateTakensCollection; trackBy: trackCandidateById"
+            >
+              {{ candidateOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

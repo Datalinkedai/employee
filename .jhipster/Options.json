@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20220725204304",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "options",
+  "fields": [
+    {
+      "fieldName": "optionName",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Options",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "questions",
+      "otherEntityRelationshipName": "optionList",
+      "relationshipName": "questions",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
