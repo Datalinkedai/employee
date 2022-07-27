@@ -41,7 +41,7 @@
     {
       "fieldName": "status",
       "fieldType": "Status",
-      "fieldValues": "ACTIVE (active),INACTIVE (inactive)"
+      "fieldValues": "ACTIVE (active),INACTIVE (inactive),DELETED (deleted)"
     }
   ],
   "fluentMethods": true,

@@ -12,6 +12,7 @@ import { ParseLinks } from 'app/core/util/parse-links.service';
 @Component({
   selector: 'jhi-post',
   templateUrl: './post.component.html',
+  styleUrls : ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
   posts: IPost[];

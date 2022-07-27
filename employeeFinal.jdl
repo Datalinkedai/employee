@@ -49,7 +49,7 @@ enum AnswerType {
   MCQ(mcq), TEXT(text)
 }
 enum Status {
-  ACTIVE(active), INACTIVE(inactive)
+  ACTIVE(active), INACTIVE(inactive),DELETED(deleted)
 }
 entity Tested {
   testName String required,

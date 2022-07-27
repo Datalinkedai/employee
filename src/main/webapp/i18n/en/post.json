@@ -2,7 +2,7 @@
   "employeeApp": {
     "post": {
       "home": {
-        "title": "Posts",
+        "title": "Find Jobs",
         "refreshListLabel": "Refresh list",
         "createLabel": "Create a new Post",
         "createOrEditLabel": "Create or edit a Post",
