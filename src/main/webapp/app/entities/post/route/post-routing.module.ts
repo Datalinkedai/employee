@@ -6,11 +6,20 @@ import { PostComponent } from '../list/post.component';
 import { PostDetailComponent } from '../detail/post-detail.component';
 import { PostUpdateComponent } from '../update/post-update.component';
 import { PostRoutingResolveService } from './post-routing-resolve.service';
+import { ApplyforjobsComponent } from '../applyforjobs/applyforjobs.component';
 
 const postRoute: Routes = [
   {
     path: '',
-    component: PostComponent,
+    component: PostComponent
+    // canActivate: [UserRouteAccessService],
+  },
+  {
+    path: ':id/apply',
+    component: ApplyforjobsComponent,
+    resolve: {
+      post: PostRoutingResolveService,
+    },
     canActivate: [UserRouteAccessService],
   },
   {
@@ -43,4 +52,4 @@ const postRoute: Routes = [
   imports: [RouterModule.forChild(postRoute)],
   exports: [RouterModule],
 })
-export class PostRoutingModule {}
+export class PostRoutingModule { }

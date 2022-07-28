@@ -6,7 +6,10 @@
         "refreshListLabel": "Refresh list",
         "createLabel": "Create a new Post",
         "createOrEditLabel": "Create or edit a Post",
-        "notFound": "No Posts found"
+        "notFound": "No Posts found",
+        "search" : "Khujun",
+        "viewJob": "Dekhun",
+        "applyJob": "Asun"
       },
       "created": "A new Post is created with identifier {{ param }}",
       "updated": "A Post is updated with identifier {{ param }}",
