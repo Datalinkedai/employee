@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
  * A Interview.
  */
 @Document(collection = "interview")
-public class Interview implements Serializable {
+public class Interview extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

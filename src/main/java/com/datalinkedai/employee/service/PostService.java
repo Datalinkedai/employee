@@ -1,6 +1,7 @@
 package com.datalinkedai.employee.service;
 
 import com.datalinkedai.employee.domain.Post;
+import com.datalinkedai.employee.domain.Interview;
 import org.springframework.data.domain.Pageable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -63,4 +64,10 @@ public interface PostService {
      * @return a Mono to signal the deletion
      */
     Mono<Void> delete(String id);
+    /**
+     * Save a interview.
+     * @param postId the id of the post entity.
+     * @return the interview details
+     */
+    Mono<Interview> applyForJob(String postId);
 }

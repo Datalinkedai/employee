@@ -1,10 +1,19 @@
 package com.datalinkedai.employee.service.impl;
 
+import com.datalinkedai.employee.domain.Interview;
 import com.datalinkedai.employee.domain.Post;
 import com.datalinkedai.employee.repository.PostRepository;
+import com.datalinkedai.employee.security.SecurityUtils;
+import com.datalinkedai.employee.service.InterviewService;
 import com.datalinkedai.employee.service.PostService;
+
+import java.time.Clock;
+import java.time.Instant;
+import java.time.LocalDate;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -23,6 +32,9 @@ public class PostServiceImpl implements PostService {
     public PostServiceImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
+
+    @Autowired
+    private InterviewService interviewService;
 
     @Override
     public Mono<Post> save(Post post) {
@@ -96,5 +108,19 @@ public class PostServiceImpl implements PostService {
     public Mono<Void> delete(String id) {
         log.debug("Request to delete Post : {}", id);
         return postRepository.deleteById(id);
+    }
+
+    @Override
+    public Mono<Interview> applyForJob(String postId) {
+        String userLogin = SecurityUtils.getCurrentUserLogin().block();
+        Post applyingPost = this.findOne(postId).block();
+        Interview interview = new Interview();
+        interview.setInterviewName(applyingPost.getPostName()+" "+userLogin);
+        interview.setScheduledDate(LocalDate.now().plusDays(2));
+        interview.setStartTime(Instant.now().plusSeconds(20));
+        interview.endTime(Instant.now().plusSeconds(300));
+        System.out.println(interview);
+        // Interview interviewMono = Mono.just(interview);
+        return interviewService.save(interview);
     }
 }

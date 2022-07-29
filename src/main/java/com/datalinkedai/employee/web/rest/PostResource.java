@@ -1,5 +1,6 @@
 package com.datalinkedai.employee.web.rest;
 
+import com.datalinkedai.employee.domain.Interview;
 import com.datalinkedai.employee.domain.Post;
 import com.datalinkedai.employee.repository.PostRepository;
 import com.datalinkedai.employee.service.PostService;
@@ -225,5 +226,12 @@ public class PostResource {
             .map(result ->
                 ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build()
             );
+    }
+
+    @GetMapping("/post/apply/{id}")
+    public Mono<ResponseEntity<Interview>> applyPost(@PathVariable String id) {
+        log.debug("REST request to get Post : {}", id);
+        Mono<Interview> post = postService.applyForJob(id);
+        return ResponseUtil.wrapOrNotFound(post);
     }
 }
