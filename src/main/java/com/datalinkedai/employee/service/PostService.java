@@ -69,5 +69,5 @@ public interface PostService {
      * @param postId the id of the post entity.
      * @return the interview details
      */
-    Mono<Interview> applyForJob(String postId);
+    Mono<Interview> applyForJob(String postId) throws Exception;
 }

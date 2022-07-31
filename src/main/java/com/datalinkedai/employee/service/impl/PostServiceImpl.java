@@ -10,6 +10,7 @@ import com.datalinkedai.employee.service.PostService;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -111,9 +112,10 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Mono<Interview> applyForJob(String postId) {
-        String userLogin = SecurityUtils.getCurrentUserLogin().block();
-        Post applyingPost = this.findOne(postId).block();
+    public Mono<Interview> applyForJob(String postId) throws Exception {
+        String userLogin = SecurityUtils.getCurrentUserLogin().toFuture().get();
+        // Post applyingPost =this.findOne(postId).subscribe(post -> applyingPost = post, throwable -> applyingPost = null);
+        Post applyingPost = this.findOne(postId).toFuture().get();
         Interview interview = new Interview();
         interview.setInterviewName(applyingPost.getPostName()+" "+userLogin);
         interview.setScheduledDate(LocalDate.now().plusDays(2));
