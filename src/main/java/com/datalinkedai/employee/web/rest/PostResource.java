@@ -228,7 +228,7 @@ public class PostResource {
             );
     }
 
-    @GetMapping("/post/apply/{id}")
+    @GetMapping("/posts/apply/{id}")
     public Mono<ResponseEntity<Interview>> applyPost(@PathVariable String id) throws Exception {
         log.debug("REST request to get Post : {}", id);
         Mono<Interview> post;
