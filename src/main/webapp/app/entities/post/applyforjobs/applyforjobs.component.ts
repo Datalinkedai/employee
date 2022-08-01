@@ -1,7 +1,11 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IInterview } from 'app/entities/interview/interview.model';
+import { Observable } from 'rxjs';
 
 import { IPost } from '../post.model';
+import { PostService } from '../service/post.service';
 // import {} from '../../../account/account.module';
 
 @Component({
@@ -13,7 +17,7 @@ export class ApplyforjobsComponent implements OnInit {
 
   post: IPost | null = null;
 
-  constructor(protected activatedRoute: ActivatedRoute) {}
+  constructor(protected activatedRoute: ActivatedRoute, protected postService: PostService) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ post }) => {
@@ -26,7 +30,9 @@ export class ApplyforjobsComponent implements OnInit {
   }
 
   applyButton(): void {
-    console.error(this.post?.id);
+    this.postService.applyPost(this.post?.id?this.post.id:'').subscribe((response) => {
+      console.error(response);
+    });
     // debugger;
   }
 

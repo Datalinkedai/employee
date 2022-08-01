@@ -8,6 +8,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IPost, getPostIdentifier } from '../post.model';
+import { IInterview } from 'app/entities/interview/interview.model';
 
 export type EntityResponseType = HttpResponse<IPost>;
 export type EntityArrayResponseType = HttpResponse<IPost[]>;
@@ -54,6 +55,12 @@ export class PostService {
 
   delete(id: string): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  applyPost(id: string): Observable<EntityResponseType> {
+    return this.http
+      .get<IInterview>(`${this.resourceUrl}/apply/${id}`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   addPostToCollectionIfMissing(postCollection: IPost[], ...postsToCheck: (IPost | null | undefined)[]): IPost[] {
