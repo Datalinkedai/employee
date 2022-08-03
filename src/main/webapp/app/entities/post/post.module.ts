@@ -5,10 +5,11 @@ import { PostDetailComponent } from './detail/post-detail.component';
 import { PostUpdateComponent } from './update/post-update.component';
 import { PostDeleteDialogComponent } from './delete/post-delete-dialog.component';
 import { PostRoutingModule } from './route/post-routing.module';
+import { ApplyforjobsComponent } from './applyforjobs/applyforjobs.component';
 
 @NgModule({
   imports: [SharedModule, PostRoutingModule],
-  declarations: [PostComponent, PostDetailComponent, PostUpdateComponent, PostDeleteDialogComponent],
+  declarations: [PostComponent, PostDetailComponent, PostUpdateComponent, PostDeleteDialogComponent, ApplyforjobsComponent],
   entryComponents: [PostDeleteDialogComponent],
 })
 export class PostModule {}

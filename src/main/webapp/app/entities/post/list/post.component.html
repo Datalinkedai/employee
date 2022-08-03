@@ -15,17 +15,19 @@
     <div class="col-xs-12 col-md-5 offset-xl-2 col-xl-4 p-2">
       <div class="input-group">
         <span class="input-group-text" id="basic-addon1">@</span>
-        <input type="text" class="form-control" placeholder="By Job Role" aria-label="Username" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="By Job Role" aria-label="Username"
+          aria-describedby="basic-addon1">
       </div>
     </div>
     <div class="col-xs-12 col-md-5 col-xl-4 p-2">
       <div class="input-group">
         <span class="input-group-text" id="basic-addon1">@</span>
-        <input type="text" class="form-control" placeholder="By Post Name" aria-label="Username" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="By Post Name" aria-label="Username"
+          aria-describedby="basic-addon1">
       </div>
     </div>
     <div class="col-xs-12 col-md-2 col-xl-2 p-2">
-      <button class="btn btn-primary">Click me</button>
+      <button class="btn btn-primary" jhiTranslate="employeeApp.post.home.search"></button>
     </div>
   </div>
 
@@ -36,8 +38,10 @@
           <h5 class="card-title postNameCard">{{post.postName}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{post.roles}}</h6>
           <p class="card-text">{{post.description}}</p>
-          <a href="#" class="card-link" [routerLink]="['/post', post.id, 'view']">View Details</a>
-          <a href="#" class="card-link">Another link</a>
+          <a class="card-link" [routerLink]="['/post', post.id, 'view']"
+            jhiTranslate="employeeApp.post.home.viewJob"></a>
+          <a class="card-link" [routerLink]="['/post', post.id, 'apply']"
+            jhiTranslate="employeeApp.post.home.applyJob"></a>
         </div>
       </div>
     </div>
