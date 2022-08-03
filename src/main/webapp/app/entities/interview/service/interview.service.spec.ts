@@ -31,7 +31,7 @@ describe('Interview Service', () => {
       endTime: currentDate,
       resceduled: 0,
       rescheduleDate: currentDate,
-      rescheduleStartTime: currentDate,
+      
       rescheduleEndTIme: currentDate,
       rescheduleApproved: false,
     };
@@ -45,7 +45,7 @@ describe('Interview Service', () => {
           startTime: currentDate.format(DATE_TIME_FORMAT),
           endTime: currentDate.format(DATE_TIME_FORMAT),
           rescheduleDate: currentDate.format(DATE_FORMAT),
-          rescheduleStartTime: currentDate.format(DATE_TIME_FORMAT),
+          
           rescheduleEndTIme: currentDate.format(DATE_TIME_FORMAT),
         },
         elemDefault
@@ -78,7 +78,7 @@ describe('Interview Service', () => {
           startTime: currentDate,
           endTime: currentDate,
           rescheduleDate: currentDate,
-          rescheduleStartTime: currentDate,
+          
           rescheduleEndTIme: currentDate,
         },
         returnedFromService
