@@ -28,79 +28,174 @@
     <span jhiTranslate="employeeApp.interview.home.notFound">No interviews found</span>
   </div>
 
-  <div class="table-responsive" id="entities" *ngIf="interviews && interviews.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr>
-          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.interviewName">Interview Name</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.scheduledDate">Scheduled Date</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.startTime">Start Time</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.endTime">End Time</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.resceduled">Resceduled</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleDate">Reschedule Date</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleStartTime">Reschedule Start Time</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleEndTIme">Reschedule End T Ime</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleApproved">Reschedule Approved</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.interviewBy">Interview By</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleApprovedBy">Reschedule Approved By</span></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let interview of interviews; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/interview', interview.id, 'view']">{{ interview.id }}</a>
-          </td>
-          <td>{{ interview.interviewName }}</td>
-          <td>{{ interview.scheduledDate | formatMediumDate }}</td>
-          <td>{{ interview.startTime | formatMediumDatetime }}</td>
-          <td>{{ interview.endTime | formatMediumDatetime }}</td>
-          <td>{{ interview.resceduled }}</td>
-          <td>{{ interview.rescheduleDate | formatMediumDate }}</td>
-          <td>{{ interview.rescheduleStartTime | formatMediumDatetime }}</td>
-          <td>{{ interview.rescheduleEndTIme | formatMediumDatetime }}</td>
-          <td>{{ interview.rescheduleApproved }}</td>
-          <td>
-            <div *ngIf="interview.interviewBy">
-              <a [routerLink]="['/candidate', interview.interviewBy?.id, 'view']">{{ interview.interviewBy?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="interview.rescheduleApprovedBy">
-              <a [routerLink]="['/candidate', interview.rescheduleApprovedBy?.id, 'view']">{{ interview.rescheduleApprovedBy?.id }}</a>
-            </div>
-          </td>
-          <td class="text-end">
-            <div class="btn-group">
-              <button
-                type="submit"
-                [routerLink]="['/interview', interview.id, 'view']"
-                class="btn btn-info btn-sm"
-                data-cy="entityDetailsButton"
-              >
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-              </button>
+  <nav ngbNav #nav="ngbNav" class="nav-tabs">
+    <ng-container ngbNavItem>
+      <a ngbNavLink>By Employee</a>
+      <ng-template ngbNavContent>
+        <h4>By Employee</h4>
+        <div class="table-responsive" id="entities--1" *ngIf="interviews && interviews.length > 0">
+          <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+              <tr>
+                <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.interviewName">Interview Name</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.scheduledDate">Scheduled Date</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.startTime">Start Time</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.endTime">End Time</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.resceduled">Resceduled</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleDate">Reschedule Date</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleStartTime">Reschedule Start Time</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleEndTIme">Reschedule End T Ime</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleApproved">Reschedule Approved</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.interviewBy">Interview By</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleApprovedBy">Reschedule Approved By</span></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let interview of interviews; trackBy: trackId" data-cy="entityTable">
+                <td>
+                  <a [routerLink]="['/interview', interview.id, 'view']">{{ interview.id }}</a>
+                </td>
+                <td>{{ interview.interviewName }}</td>
+                <td>{{ interview.scheduledDate | formatMediumDate }}</td>
+                <td>{{ interview.startTime | formatMediumDatetime }}</td>
+                <td>{{ interview.endTime | formatMediumDatetime }}</td>
+                <td>{{ interview.resceduled }}</td>
+                <td>{{ interview.rescheduleDate | formatMediumDate }}</td>
+                <td>{{ interview.rescheduleStartTime | formatMediumDatetime }}</td>
+                <td>{{ interview.rescheduleEndTIme | formatMediumDatetime }}</td>
+                <td>{{ interview.rescheduleApproved }}</td>
+                <td>
+                  <div *ngIf="interview.interviewBy">
+                    <a [routerLink]="['/candidate', interview.interviewBy?.id, 'view']">{{ interview.interviewBy?.id }}</a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngIf="interview.rescheduleApprovedBy">
+                    <a [routerLink]="['/candidate', interview.rescheduleApprovedBy?.id, 'view']">{{
+                      interview.rescheduleApprovedBy?.id
+                    }}</a>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <div class="btn-group">
+                    <button
+                      type="submit"
+                      [routerLink]="['/interview', interview.id, 'view']"
+                      class="btn btn-info btn-sm"
+                      data-cy="entityDetailsButton"
+                    >
+                      <fa-icon icon="eye"></fa-icon>
+                      <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                    </button>
 
-              <button
-                type="submit"
-                [routerLink]="['/interview', interview.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
+                    <button
+                      type="submit"
+                      [routerLink]="['/interview', interview.id, 'edit']"
+                      class="btn btn-primary btn-sm"
+                      data-cy="entityEditButton"
+                    >
+                      <fa-icon icon="pencil-alt"></fa-icon>
+                      <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
 
-              <button type="submit" (click)="delete(interview)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+                    <button type="submit" (click)="delete(interview)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                      <fa-icon icon="times"></fa-icon>
+                      <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem>
+      <a ngbNavLink>Today</a>
+      <ng-template ngbNavContent>
+        <h4>By Today</h4>
+        <div class="table-responsive" id="entities--2" *ngIf="interviews && interviews.length > 0">
+          <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+              <tr>
+                <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.interviewName">Interview Name</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.scheduledDate">Scheduled Date</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.startTime">Start Time</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.endTime">End Time</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.resceduled">Resceduled</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleDate">Reschedule Date</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleStartTime">Reschedule Start Time</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleEndTIme">Reschedule End T Ime</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleApproved">Reschedule Approved</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.interviewBy">Interview By</span></th>
+                <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleApprovedBy">Reschedule Approved By</span></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let interview of interviews; trackBy: trackId" data-cy="entityTable">
+                <td>
+                  <a [routerLink]="['/interview', interview.id, 'view']">{{ interview.id }}</a>
+                </td>
+                <td>{{ interview.interviewName }}</td>
+                <td>{{ interview.scheduledDate | formatMediumDate }}</td>
+                <td>{{ interview.startTime | formatMediumDatetime }}</td>
+                <td>{{ interview.endTime | formatMediumDatetime }}</td>
+                <td>{{ interview.resceduled }}</td>
+                <td>{{ interview.rescheduleDate | formatMediumDate }}</td>
+                <td>{{ interview.rescheduleStartTime | formatMediumDatetime }}</td>
+                <td>{{ interview.rescheduleEndTIme | formatMediumDatetime }}</td>
+                <td>{{ interview.rescheduleApproved }}</td>
+                <td>
+                  <div *ngIf="interview.interviewBy">
+                    <a [routerLink]="['/candidate', interview.interviewBy?.id, 'view']">{{ interview.interviewBy?.id }}</a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngIf="interview.rescheduleApprovedBy">
+                    <a [routerLink]="['/candidate', interview.rescheduleApprovedBy?.id, 'view']">{{
+                      interview.rescheduleApprovedBy?.id
+                    }}</a>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <div class="btn-group">
+                    <button
+                      type="submit"
+                      [routerLink]="['/interview', interview.id, 'view']"
+                      class="btn btn-info btn-sm"
+                      data-cy="entityDetailsButton"
+                    >
+                      <fa-icon icon="eye"></fa-icon>
+                      <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                    </button>
+
+                    <button
+                      type="submit"
+                      [routerLink]="['/interview', interview.id, 'edit']"
+                      class="btn btn-primary btn-sm"
+                      data-cy="entityEditButton"
+                    >
+                      <fa-icon icon="pencil-alt"></fa-icon>
+                      <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+
+                    <button type="submit" (click)="delete(interview)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                      <fa-icon icon="times"></fa-icon>
+                      <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+    </ng-container>
+  </nav>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
 </div>
