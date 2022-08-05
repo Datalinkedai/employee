@@ -1,20 +1,21 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-interview-heading" data-cy="InterviewCreateUpdateHeading" jhiTranslate="employeeApp.interview.home.createOrEditLabel">
+      <h3 id="jhi-interview-heading" data-cy="InterviewCreateUpdateHeading" jhiTranslate="employeeApp.interview.home.createOrEditLabel">
         Create or edit a Interview
-      </h2>
+      </h3>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+        <!--<div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
           <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
           <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
+        </div>-->
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="employeeApp.interview.interviewName" for="field_interviewName">Interview Name</label>
+        <div class="row mb-3 py-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.interviewName" for="field_interviewName"></label>
+          <div class="d-flex">
           <input
             type="text"
             class="form-control"
@@ -22,10 +23,12 @@
             id="field_interviewName"
             data-cy="interviewName"
             formControlName="interviewName"
+            
           />
+          </div>
         </div>
 
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.scheduledDate" for="field_scheduledDate">Scheduled Date</label>
           <div class="input-group">
             <input
@@ -55,9 +58,9 @@
               This field is required.
             </small>
           </div>
-        </div>
+        </div>-->
 
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.startTime" for="field_startTime">Start Time</label>
           <div class="d-flex">
             <input
@@ -70,9 +73,9 @@
               placeholder="YYYY-MM-DD HH:mm"
             />
           </div>
-        </div>
+        </div>-->
 
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.endTime" for="field_endTime">End Time</label>
           <div class="d-flex">
             <input
@@ -85,9 +88,9 @@
               placeholder="YYYY-MM-DD HH:mm"
             />
           </div>
-        </div>
+        </div>-->
 
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.resceduled" for="field_resceduled">Resceduled</label>
           <input
             type="number"
@@ -97,9 +100,21 @@
             data-cy="resceduled"
             formControlName="resceduled"
           />
-        </div>
+        </div>-->
 
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.Name" for="field_Name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="Name"
+            id="field_Name"
+            data-cy="Name"
+            formControlName="Name"
+          />
+        </div>-->
+
+        <div class="row mb-3 py-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleDate" for="field_rescheduleDate">Reschedule Date</label>
           <div class="input-group">
             <input
@@ -118,7 +133,7 @@
           </div>
         </div>
 
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleStartTime" for="field_rescheduleStartTime"
             >Reschedule Start Time</label
           >
@@ -130,12 +145,12 @@
               class="form-control"
               name="rescheduleStartTime"
               formControlName="rescheduleStartTime"
-              placeholder="HH:mm "
+              placeholder="HH:mm tt"
             />
           </div>
-        </div>
+        </div>-->
 
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleEndTIme" for="field_rescheduleEndTIme"
             >Reschedule End T Ime</label
           >
@@ -147,26 +162,80 @@
               class="form-control"
               name="rescheduleEndTIme"
               formControlName="rescheduleEndTIme"
-              placeholder="HH:mm"
+              placeholder="00:00"
             />
+          </div>
+        </div>-->
+
+        <div class="row py-3">
+          <div class="col">
+            <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleStartTime" for="field_rescheduleStartTime">Reschedule Start Time</label>
+            <div class="d-flex">
+              <input
+              id="field_rescheduleStartTime"
+              data-cy="rescheduleStartTime"
+              type="time"
+              class="form-control"
+              name="rescheduleStartTime"
+              formControlName="rescheduleStartTime"
+              placeholder="hh:mm"
+            />
+            </div>
+          </div>
+          <div class="col">
+            <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleEndTIme" for="field_rescheduleEndTIme"
+            >Reschedule End Time</label>
+            <div class="d-flex">
+              <input
+                id="field_rescheduleEndTIme"
+                data-cy="rescheduleEndTIme"
+                type="time"
+                class="form-control"
+                name="rescheduleEndTIme"
+                formControlName="rescheduleEndTIme"
+                placeholder="hh:mm"
+              />
+            </div>
           </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-check py-3">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Approve the change in time
+          </label>
+        </div>
+
+        
+        <div class="d-grid gap-2 col-2 mx-auto py-1">
+          <button class="btn btn-primary" type="button" padding="15px 32px">Confirm</button>
+        </div> 
+        
+        <!--<button
+          type="confirm"
+          id="confirm-entity"
+          data-cy="entityCreateConfirmButton"
+          [disabled]="editForm.invalid || isConfirming"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="confirm"></fa-icon>&nbsp;<span jhiTranslate="entity.action.confirm">Confirm</span>
+        </button>-->
+
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleApproved" for="field_rescheduleApproved"
-            >Reschedule Approved</label
+            >Approve the change in time</label
           >
           <input
             type="checkbox"
             class="form-check"
-            name="rescheduleApproved"
+            name="pprove the change in time"
             id="field_rescheduleApproved"
             data-cy="rescheduleApproved"
             formControlName="rescheduleApproved"
           />
-        </div>
+        </div>-->
 
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.interviewBy" for="field_interviewBy">Interview By</label>
           <select class="form-control" id="field_interviewBy" data-cy="interviewBy" name="interviewBy" formControlName="interviewBy">
             <option [ngValue]="null"></option>
@@ -179,9 +248,9 @@
               {{ candidateOption.id }}
             </option>
           </select>
-        </div>
+        </div>-->
 
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleApprovedBy" for="field_rescheduleApprovedBy"
             >Reschedule Approved By</label
           >
@@ -205,9 +274,9 @@
             </option>
           </select>
         </div>
-      </div>
+      </div>-->
 
-      <div>
+      <!--<div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
@@ -221,6 +290,8 @@
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
+      </div>-->
+      
       </div>
     </form>
   </div>
