@@ -68,6 +68,13 @@
       "ownerSide": true,
       "relationshipName": "rescheduleApprovedBy",
       "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "candidate",
+      "otherEntityRelationshipName": "interview",
+      "ownerSide": true,
+      "relationshipName": "interviewFor",
+      "relationshipType": "one-to-one"
     }
   ],
   "service": "serviceImpl"

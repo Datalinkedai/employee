@@ -16,6 +16,7 @@ export interface IInterview {
   interviewStatus?: InterviewStatus | null;
   interviewBy?: ICandidate | null;
   rescheduleApprovedBy?: ICandidate | null;
+  interviewFor?: ICandidate | null;
 }
 
 export class Interview implements IInterview {
@@ -32,7 +33,8 @@ export class Interview implements IInterview {
     public rescheduleApproved?: boolean | null,
     public interviewStatus?: InterviewStatus | null,
     public interviewBy?: ICandidate | null,
-    public rescheduleApprovedBy?: ICandidate | null
+    public rescheduleApprovedBy?: ICandidate | null,
+    public interviewFor?: ICandidate | null
   ) {
     this.rescheduleApproved = this.rescheduleApproved ?? false;
   }

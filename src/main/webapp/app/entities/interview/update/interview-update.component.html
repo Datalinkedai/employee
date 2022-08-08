@@ -223,6 +223,21 @@
             </option>
           </select>
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.interviewFor" for="field_interviewFor">Interview For</label>
+          <select class="form-control" id="field_interviewFor" data-cy="interviewFor" name="interviewFor" formControlName="interviewFor">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                candidateOption.id === editForm.get('interviewFor')!.value?.id ? editForm.get('interviewFor')!.value : candidateOption
+              "
+              *ngFor="let candidateOption of interviewForsCollection; trackBy: trackCandidateById"
+            >
+              {{ candidateOption.id }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div>

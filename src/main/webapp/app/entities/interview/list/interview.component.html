@@ -45,6 +45,7 @@
           <th scope="col"><span jhiTranslate="employeeApp.interview.interviewStatus">Interview Status</span></th>
           <th scope="col"><span jhiTranslate="employeeApp.interview.interviewBy">Interview By</span></th>
           <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleApprovedBy">Reschedule Approved By</span></th>
+          <th scope="col"><span jhiTranslate="employeeApp.interview.interviewFor">Interview For</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -71,6 +72,11 @@
           <td>
             <div *ngIf="interview.rescheduleApprovedBy">
               <a [routerLink]="['/candidate', interview.rescheduleApprovedBy?.id, 'view']">{{ interview.rescheduleApprovedBy?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="interview.interviewFor">
+              <a [routerLink]="['/candidate', interview.interviewFor?.id, 'view']">{{ interview.interviewFor?.id }}</a>
             </div>
           </td>
           <td class="text-end">

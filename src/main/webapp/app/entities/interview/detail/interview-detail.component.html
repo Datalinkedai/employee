@@ -66,6 +66,12 @@
             <a [routerLink]="['/candidate', interview.rescheduleApprovedBy?.id, 'view']">{{ interview.rescheduleApprovedBy?.id }}</a>
           </div>
         </dd>
+        <dt><span jhiTranslate="employeeApp.interview.interviewFor">Interview For</span></dt>
+        <dd>
+          <div *ngIf="interview.interviewFor">
+            <a [routerLink]="['/candidate', interview.interviewFor?.id, 'view']">{{ interview.interviewFor?.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

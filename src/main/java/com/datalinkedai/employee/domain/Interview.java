@@ -58,6 +58,9 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
     @Field("rescheduleApprovedBy")
     private Candidate rescheduleApprovedBy;
 
+    @Field("interviewFor")
+    private Candidate interviewFor;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public String getId() {
@@ -226,6 +229,19 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
 
     public Interview rescheduleApprovedBy(Candidate candidate) {
         this.setRescheduleApprovedBy(candidate);
+        return this;
+    }
+
+    public Candidate getInterviewFor() {
+        return this.interviewFor;
+    }
+
+    public void setInterviewFor(Candidate candidate) {
+        this.interviewFor = candidate;
+    }
+
+    public Interview interviewFor(Candidate candidate) {
+        this.setInterviewFor(candidate);
         return this;
     }
 

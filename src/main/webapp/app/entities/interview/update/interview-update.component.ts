@@ -24,6 +24,7 @@ export class InterviewUpdateComponent implements OnInit {
 
   interviewBiesCollection: ICandidate[] = [];
   rescheduleApprovedBiesCollection: ICandidate[] = [];
+  interviewForsCollection: ICandidate[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -39,6 +40,7 @@ export class InterviewUpdateComponent implements OnInit {
     interviewStatus: [],
     interviewBy: [],
     rescheduleApprovedBy: [],
+    interviewFor: [],
   });
 
   constructor(
@@ -116,6 +118,7 @@ export class InterviewUpdateComponent implements OnInit {
       interviewStatus: interview.interviewStatus,
       interviewBy: interview.interviewBy,
       rescheduleApprovedBy: interview.rescheduleApprovedBy,
+      interviewFor: interview.interviewFor,
     });
 
     this.interviewBiesCollection = this.candidateService.addCandidateToCollectionIfMissing(
@@ -125,6 +128,10 @@ export class InterviewUpdateComponent implements OnInit {
     this.rescheduleApprovedBiesCollection = this.candidateService.addCandidateToCollectionIfMissing(
       this.rescheduleApprovedBiesCollection,
       interview.rescheduleApprovedBy
+    );
+    this.interviewForsCollection = this.candidateService.addCandidateToCollectionIfMissing(
+      this.interviewForsCollection,
+      interview.interviewFor
     );
   }
 
@@ -148,6 +155,16 @@ export class InterviewUpdateComponent implements OnInit {
         )
       )
       .subscribe((candidates: ICandidate[]) => (this.rescheduleApprovedBiesCollection = candidates));
+
+    this.candidateService
+      .query({ filter: 'interview-is-null' })
+      .pipe(map((res: HttpResponse<ICandidate[]>) => res.body ?? []))
+      .pipe(
+        map((candidates: ICandidate[]) =>
+          this.candidateService.addCandidateToCollectionIfMissing(candidates, this.editForm.get('interviewFor')!.value)
+        )
+      )
+      .subscribe((candidates: ICandidate[]) => (this.interviewForsCollection = candidates));
   }
 
   protected createFromForm(): IInterview {
@@ -170,6 +187,7 @@ export class InterviewUpdateComponent implements OnInit {
       interviewStatus: this.editForm.get(['interviewStatus'])!.value,
       interviewBy: this.editForm.get(['interviewBy'])!.value,
       rescheduleApprovedBy: this.editForm.get(['rescheduleApprovedBy'])!.value,
+      interviewFor: this.editForm.get(['interviewFor'])!.value,
     };
   }
 }
