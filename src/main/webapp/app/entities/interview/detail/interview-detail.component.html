@@ -50,6 +50,10 @@
         <dd>
           <span>{{ interview.rescheduleApproved }}</span>
         </dd>
+        <dt><span jhiTranslate="employeeApp.interview.interviewStatus">Interview Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'employeeApp.InterviewStatus.' + interview.interviewStatus }}">{{ interview.interviewStatus }}</span>
+        </dd>
         <dt><span jhiTranslate="employeeApp.interview.interviewBy">Interview By</span></dt>
         <dd>
           <div *ngIf="interview.interviewBy">

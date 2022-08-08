@@ -1,5 +1,6 @@
 package com.datalinkedai.employee.domain;
 
+import com.datalinkedai.employee.domain.enumeration.InterviewStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
@@ -47,6 +48,9 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
 
     @Field("reschedule_approved")
     private Boolean rescheduleApproved;
+
+    @Field("interview_status")
+    private InterviewStatus interviewStatus;
 
     @Field("interviewBy")
     private Candidate interviewBy;
@@ -186,6 +190,19 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
         this.rescheduleApproved = rescheduleApproved;
     }
 
+    public InterviewStatus getInterviewStatus() {
+        return this.interviewStatus;
+    }
+
+    public Interview interviewStatus(InterviewStatus interviewStatus) {
+        this.setInterviewStatus(interviewStatus);
+        return this;
+    }
+
+    public void setInterviewStatus(InterviewStatus interviewStatus) {
+        this.interviewStatus = interviewStatus;
+    }
+
     public Candidate getInterviewBy() {
         return this.interviewBy;
     }
@@ -245,6 +262,7 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
             ", rescheduleStartTime='" + getRescheduleStartTime() + "'" +
             ", rescheduleEndTIme='" + getRescheduleEndTIme() + "'" +
             ", rescheduleApproved='" + getRescheduleApproved() + "'" +
+            ", interviewStatus='" + getInterviewStatus() + "'" +
             "}";
     }
 }

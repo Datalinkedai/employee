@@ -12,6 +12,7 @@ import { IInterview, Interview } from '../interview.model';
 import { InterviewService } from '../service/interview.service';
 import { ICandidate } from 'app/entities/candidate/candidate.model';
 import { CandidateService } from 'app/entities/candidate/service/candidate.service';
+import { InterviewStatus } from 'app/entities/enumerations/interview-status.model';
 
 @Component({
   selector: 'jhi-interview-update',
@@ -19,6 +20,7 @@ import { CandidateService } from 'app/entities/candidate/service/candidate.servi
 })
 export class InterviewUpdateComponent implements OnInit {
   isSaving = false;
+  interviewStatusValues = Object.keys(InterviewStatus);
 
   interviewBiesCollection: ICandidate[] = [];
   rescheduleApprovedBiesCollection: ICandidate[] = [];
@@ -34,6 +36,7 @@ export class InterviewUpdateComponent implements OnInit {
     rescheduleStartTime: [],
     rescheduleEndTIme: [],
     rescheduleApproved: [],
+    interviewStatus: [],
     interviewBy: [],
     rescheduleApprovedBy: [],
   });
@@ -110,6 +113,7 @@ export class InterviewUpdateComponent implements OnInit {
       rescheduleStartTime: interview.rescheduleStartTime ? interview.rescheduleStartTime.format(DATE_TIME_FORMAT) : null,
       rescheduleEndTIme: interview.rescheduleEndTIme ? interview.rescheduleEndTIme.format(DATE_TIME_FORMAT) : null,
       rescheduleApproved: interview.rescheduleApproved,
+      interviewStatus: interview.interviewStatus,
       interviewBy: interview.interviewBy,
       rescheduleApprovedBy: interview.rescheduleApprovedBy,
     });
@@ -163,6 +167,7 @@ export class InterviewUpdateComponent implements OnInit {
         ? dayjs(this.editForm.get(['rescheduleEndTIme'])!.value, DATE_TIME_FORMAT)
         : undefined,
       rescheduleApproved: this.editForm.get(['rescheduleApproved'])!.value,
+      interviewStatus: this.editForm.get(['interviewStatus'])!.value,
       interviewBy: this.editForm.get(['interviewBy'])!.value,
       rescheduleApprovedBy: this.editForm.get(['rescheduleApprovedBy'])!.value,
     };

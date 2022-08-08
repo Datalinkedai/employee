@@ -1,58 +1,4 @@
 <div>
-  <h2>
-    <span jhiTranslate="employeeApp.post.home.title">Find Job</span>
-  </h2>
-
-  <jhi-alert-error></jhi-alert-error>
-
-  <jhi-alert></jhi-alert>
-
-  <div class="alert alert-warning" id="no-result" *ngIf="posts?.length === 0">
-    <span jhiTranslate="employeeApp.post.home.notFound">No posts found</span>
-  </div>
-
-  <div class="row pb-3">
-    <div class="col-xs-12 col-md-5 offset-xl-2 col-xl-4 p-2">
-      <div class="input-group">
-        <span class="input-group-text" id="basic-addon1">@</span>
-        <input type="text" class="form-control" placeholder="By Job Role" aria-label="Username"
-          aria-describedby="basic-addon1">
-      </div>
-    </div>
-    <div class="col-xs-12 col-md-5 col-xl-4 p-2">
-      <div class="input-group">
-        <span class="input-group-text" id="basic-addon1">@</span>
-        <input type="text" class="form-control" placeholder="By Post Name" aria-label="Username"
-          aria-describedby="basic-addon1">
-      </div>
-    </div>
-    <div class="col-xs-12 col-md-2 col-xl-2 p-2">
-      <button class="btn btn-primary" jhiTranslate="employeeApp.post.home.search"></button>
-    </div>
-  </div>
-
-  <div class="row" *ngIf="posts && posts.length > 0">
-    <div class="col-xs-12 col-md-6 col-xl-4 py-3" *ngFor="let post of posts; trackBy: trackId">
-      <div class="card bg-secondary">
-        <div class="card-body">
-          <h5 class="card-title postNameCard">{{post.postName}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{post.roles}}</h6>
-          <p class="card-text">{{post.description}}</p>
-          <a class="card-link" [routerLink]="['/post', post.id, 'view']"
-            jhiTranslate="employeeApp.post.home.viewJob"></a>
-          <a class="card-link" [routerLink]="['/post', post.id, 'apply']"
-            jhiTranslate="employeeApp.post.home.applyJob"></a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-</div>
-
-<!--to Comment -->
-
-<!-- <div>
   <h2 id="page-heading" data-cy="PostHeading">
     <span jhiTranslate="employeeApp.post.home.title">Posts</span>
 
@@ -62,8 +8,12 @@
         <span jhiTranslate="employeeApp.post.home.refreshListLabel">Refresh List</span>
       </button>
 
-      <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-primary jh-create-entity create-post"
-        [routerLink]="['/post/new']">
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-post"
+        [routerLink]="['/post/new']"
+      >
         <fa-icon icon="plus"></fa-icon>
         <span jhiTranslate="employeeApp.post.home.createLabel"> Create a new Post </span>
       </button>
@@ -82,52 +32,37 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="postName">
-            <span jhiTranslate="employeeApp.post.postName">Post Name</span>
-            <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="employeeApp.post.postName">Post Name</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="description">
-            <span jhiTranslate="employeeApp.post.description">Description</span>
-            <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="employeeApp.post.description">Description</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="minimumExperience">
-            <span jhiTranslate="employeeApp.post.minimumExperience">Minimum Experience</span>
-            <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="employeeApp.post.minimumExperience">Minimum Experience</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="maximumExperience">
-            <span jhiTranslate="employeeApp.post.maximumExperience">Maximum Experience</span>
-            <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="employeeApp.post.maximumExperience">Maximum Experience</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="roles"><span jhiTranslate="employeeApp.post.roles">Roles</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
+          <th scope="col" jhiSortBy="roles"><span jhiTranslate="employeeApp.post.roles">Roles</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="responsibility">
-            <span jhiTranslate="employeeApp.post.responsibility">Responsibility</span>
-            <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="employeeApp.post.responsibility">Responsibility</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="status"><span jhiTranslate="employeeApp.post.status">Status</span>
-            <fa-icon icon="sort"></fa-icon>
-          </th>
+          <th scope="col" jhiSortBy="status"><span jhiTranslate="employeeApp.post.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="typeOfEmployment">
-            <span jhiTranslate="employeeApp.post.typeOfEmployment">Type Of Employment</span>
-            <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="employeeApp.post.typeOfEmployment">Type Of Employment</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="postedDate">
-            <span jhiTranslate="employeeApp.post.postedDate">Posted Date</span>
-            <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="employeeApp.post.postedDate">Posted Date</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="postedBy.id">
-            <span jhiTranslate="employeeApp.post.postedBy">Posted By</span>
-            <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="employeeApp.post.postedBy">Posted By</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']"
-        [infiniteScrollDistance]="0">
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
         <tr *ngFor="let post of posts; trackBy: trackId" data-cy="entityTable">
           <td>
             <a [routerLink]="['/post', post.id, 'view']">{{ post.id }}</a>
@@ -148,14 +83,12 @@
           </td>
           <td class="text-end">
             <div class="btn-group">
-              <button type="submit" [routerLink]="['/post', post.id, 'view']" class="btn btn-info btn-sm"
-                data-cy="entityDetailsButton">
+              <button type="submit" [routerLink]="['/post', post.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
-              <button type="submit" [routerLink]="['/post', post.id, 'edit']" class="btn btn-primary btn-sm"
-                data-cy="entityEditButton">
+              <button type="submit" [routerLink]="['/post', post.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
               </button>
@@ -170,4 +103,4 @@
       </tbody>
     </table>
   </div>
-</div> -->
+</div>

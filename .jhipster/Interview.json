@@ -42,6 +42,11 @@
     {
       "fieldName": "rescheduleApproved",
       "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "interviewStatus",
+      "fieldType": "InterviewStatus",
+      "fieldValues": "ACCEPTED (accepted),REJECTED (rejected),SCHEDULED (scheduled),ONHOLD(onhold)"
     }
   ],
   "fluentMethods": true,

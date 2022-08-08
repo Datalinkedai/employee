@@ -27,6 +27,7 @@
       "rescheduleStartTime": "Reschedule Start Time",
       "rescheduleEndTIme": "Reschedule End T Ime",
       "rescheduleApproved": "Reschedule Approved",
+      "interviewStatus": "Interview Status",
       "interviewBy": "Interview By",
       "rescheduleApprovedBy": "Reschedule Approved By"
     }

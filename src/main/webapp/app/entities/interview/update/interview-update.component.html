@@ -167,6 +167,24 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.interviewStatus" for="field_interviewStatus"
+            >Interview Status</label
+          >
+          <select
+            class="form-control"
+            name="interviewStatus"
+            formControlName="interviewStatus"
+            id="field_interviewStatus"
+            data-cy="interviewStatus"
+          >
+            <option [ngValue]="null">{{ 'employeeApp.InterviewStatus.null' | translate }}</option>
+            <option *ngFor="let interviewStatus of interviewStatusValues" [value]="interviewStatus">
+              {{ 'employeeApp.InterviewStatus.' + interviewStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.interviewBy" for="field_interviewBy">Interview By</label>
           <select class="form-control" id="field_interviewBy" data-cy="interviewBy" name="interviewBy" formControlName="interviewBy">
             <option [ngValue]="null"></option>

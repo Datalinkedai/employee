@@ -70,6 +70,9 @@ public class InterviewServiceImpl implements InterviewService {
                 if (interview.getRescheduleApproved() != null) {
                     existingInterview.setRescheduleApproved(interview.getRescheduleApproved());
                 }
+                if (interview.getInterviewStatus() != null) {
+                    existingInterview.setInterviewStatus(interview.getInterviewStatus());
+                }
 
                 return existingInterview;
             })
