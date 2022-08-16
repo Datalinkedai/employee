@@ -2,10 +2,13 @@ package com.datalinkedai.employee.service.impl;
 
 import com.datalinkedai.employee.domain.Interview;
 import com.datalinkedai.employee.domain.Post;
+import com.datalinkedai.employee.domain.User;
 import com.datalinkedai.employee.repository.PostRepository;
+import com.datalinkedai.employee.repository.UserRepository;
 import com.datalinkedai.employee.security.SecurityUtils;
 import com.datalinkedai.employee.service.InterviewService;
 import com.datalinkedai.employee.service.PostService;
+import com.datalinkedai.employee.service.UserService;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -36,6 +39,11 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private InterviewService interviewService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    private User login;
 
     @Override
     public Mono<Post> save(Post post) {
@@ -113,7 +121,14 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Mono<Interview> applyForJob(String postId) throws Exception {
-        String userLogin = SecurityUtils.getCurrentUserLogin().toFuture().get();
+        // User userLogin = null;
+        User userLogin = SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin).toFuture().get();
+        // SecurityUtils.getCurrentUserLogin().flatMap(login -> {
+        //     this.userLogin = login;
+        // });
+    //    User userLogin = userService.getUserWithAuthorities().flatMap(userRepository::findOneByLogin);
+       if(userLogin == null) throw new Exception("Logged In User not found");
+        log.debug("testing: {}",userLogin);
         // Post applyingPost =this.findOne(postId).subscribe(post -> applyingPost = post, throwable -> applyingPost = null);
         Post applyingPost = this.findOne(postId).toFuture().get();
         Interview interview = new Interview();

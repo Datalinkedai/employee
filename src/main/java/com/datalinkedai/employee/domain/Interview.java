@@ -43,8 +43,8 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
     @Field("reschedule_start_time")
     private Instant rescheduleStartTime;
 
-    @Field("reschedule_end_t_ime")
-    private Instant rescheduleEndTIme;
+    @Field("reschedule_end_time")
+    private Instant rescheduleEndTime;
 
     @Field("reschedule_approved")
     private Boolean rescheduleApproved;
@@ -168,7 +168,7 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
     }
 
     public Instant getRescheduleEndTIme() {
-        return this.rescheduleEndTIme;
+        return this.rescheduleEndTime;
     }
 
     public Interview rescheduleEndTIme(Instant rescheduleEndTIme) {
@@ -177,7 +177,7 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
     }
 
     public void setRescheduleEndTIme(Instant rescheduleEndTIme) {
-        this.rescheduleEndTIme = rescheduleEndTIme;
+        this.rescheduleEndTime = rescheduleEndTIme;
     }
 
     public Boolean getRescheduleApproved() {
