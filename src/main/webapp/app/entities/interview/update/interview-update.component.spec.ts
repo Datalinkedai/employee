@@ -82,12 +82,32 @@ describe('Interview Management Update Component', () => {
       expect(comp.rescheduleApprovedBiesCollection).toEqual(expectedCollection);
     });
 
+    it('Should call interviewFor query and add missing value', () => {
+      const interview: IInterview = { id: 'CBA' };
+      const interviewFor: ICandidate = { id: 'deef9e86-c9f7-4d35-9718-11ef77e729d0' };
+      interview.interviewFor = interviewFor;
+
+      const interviewForCollection: ICandidate[] = [{ id: 'a218380b-7789-4cdd-92bb-4e257e84121c' }];
+      jest.spyOn(candidateService, 'query').mockReturnValue(of(new HttpResponse({ body: interviewForCollection })));
+      const expectedCollection: ICandidate[] = [interviewFor, ...interviewForCollection];
+      jest.spyOn(candidateService, 'addCandidateToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ interview });
+      comp.ngOnInit();
+
+      expect(candidateService.query).toHaveBeenCalled();
+      expect(candidateService.addCandidateToCollectionIfMissing).toHaveBeenCalledWith(interviewForCollection, interviewFor);
+      expect(comp.interviewForsCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const interview: IInterview = { id: 'CBA' };
-      const interviewBy: ICandidate = { id: 'deef9e86-c9f7-4d35-9718-11ef77e729d0' };
+      const interviewBy: ICandidate = { id: '87524576-bf0b-4dc2-a99f-00b112b50578' };
       interview.interviewBy = interviewBy;
-      const rescheduleApprovedBy: ICandidate = { id: 'a218380b-7789-4cdd-92bb-4e257e84121c' };
+      const rescheduleApprovedBy: ICandidate = { id: '6d548a69-e1a8-4499-8acd-ea7912695554' };
       interview.rescheduleApprovedBy = rescheduleApprovedBy;
+      const interviewFor: ICandidate = { id: '7c0a1af0-5b92-438b-b6c9-294f7217a8a5' };
+      interview.interviewFor = interviewFor;
 
       activatedRoute.data = of({ interview });
       comp.ngOnInit();
@@ -95,6 +115,7 @@ describe('Interview Management Update Component', () => {
       expect(comp.editForm.value).toEqual(expect.objectContaining(interview));
       expect(comp.interviewBiesCollection).toContain(interviewBy);
       expect(comp.rescheduleApprovedBiesCollection).toContain(rescheduleApprovedBy);
+      expect(comp.interviewForsCollection).toContain(interviewFor);
     });
   });
 

@@ -36,12 +36,17 @@
       "fieldType": "Instant"
     },
     {
-      "fieldName": "rescheduleEndTIme",
+      "fieldName": "rescheduleEndTime",
       "fieldType": "Instant"
     },
     {
       "fieldName": "rescheduleApproved",
       "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "interviewStatus",
+      "fieldType": "InterviewStatus",
+      "fieldValues": "ACCEPTED (accepted),REJECTED (rejected),SCHEDULED (scheduled),ONHOLD(onhold)"
     }
   ],
   "fluentMethods": true,
@@ -62,6 +67,13 @@
       "otherEntityRelationshipName": "interview",
       "ownerSide": true,
       "relationshipName": "rescheduleApprovedBy",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "candidate",
+      "otherEntityRelationshipName": "interview",
+      "ownerSide": true,
+      "relationshipName": "interviewFor",
       "relationshipType": "one-to-one"
     }
   ],

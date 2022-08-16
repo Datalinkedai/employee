@@ -18,17 +18,19 @@
         "title": "Interview"
       },
       "id": "ID",
-      "interviewName": "Interview Name",
+      "interviewName": "Name",
       "scheduledDate": "Scheduled Date",
       "startTime": "Start Time",
       "endTime": "End Time",
       "resceduled": "Resceduled",
       "rescheduleDate": "Reschedule Date",
       "rescheduleStartTime": "Reschedule Start Time",
-      "rescheduleEndTIme": "Reschedule End T Ime",
+      "rescheduleEndTime": "Reschedule End Time",
       "rescheduleApproved": "Reschedule Approved",
+      "interviewStatus": "Interview Status",
       "interviewBy": "Interview By",
-      "rescheduleApprovedBy": "Reschedule Approved By"
+      "rescheduleApprovedBy": "Reschedule Approved By",
+      "interviewFor": "Interview For"
     }
   }
 }

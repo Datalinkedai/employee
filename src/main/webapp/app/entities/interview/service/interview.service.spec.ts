@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import dayjs from 'dayjs/esm';
 
 import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/config/input.constants';
+import { InterviewStatus } from 'app/entities/enumerations/interview-status.model';
 import { IInterview, Interview } from '../interview.model';
 
 import { InterviewService } from './interview.service';
@@ -32,8 +33,9 @@ describe('Interview Service', () => {
       resceduled: 0,
       rescheduleDate: currentDate,
       rescheduleStartTime: currentDate,
-      rescheduleEndTIme: currentDate,
+      rescheduleEndTime: currentDate,
       rescheduleApproved: false,
+      interviewStatus: InterviewStatus.ACCEPTED,
     };
   });
 
@@ -46,7 +48,7 @@ describe('Interview Service', () => {
           endTime: currentDate.format(DATE_TIME_FORMAT),
           rescheduleDate: currentDate.format(DATE_FORMAT),
           rescheduleStartTime: currentDate.format(DATE_TIME_FORMAT),
-          rescheduleEndTIme: currentDate.format(DATE_TIME_FORMAT),
+          rescheduleEndTime: currentDate.format(DATE_TIME_FORMAT),
         },
         elemDefault
       );
@@ -67,7 +69,7 @@ describe('Interview Service', () => {
           endTime: currentDate.format(DATE_TIME_FORMAT),
           rescheduleDate: currentDate.format(DATE_FORMAT),
           rescheduleStartTime: currentDate.format(DATE_TIME_FORMAT),
-          rescheduleEndTIme: currentDate.format(DATE_TIME_FORMAT),
+          rescheduleEndTime: currentDate.format(DATE_TIME_FORMAT),
         },
         elemDefault
       );
@@ -79,7 +81,7 @@ describe('Interview Service', () => {
           endTime: currentDate,
           rescheduleDate: currentDate,
           rescheduleStartTime: currentDate,
-          rescheduleEndTIme: currentDate,
+          rescheduleEndTime: currentDate,
         },
         returnedFromService
       );
@@ -102,8 +104,9 @@ describe('Interview Service', () => {
           resceduled: 1,
           rescheduleDate: currentDate.format(DATE_FORMAT),
           rescheduleStartTime: currentDate.format(DATE_TIME_FORMAT),
-          rescheduleEndTIme: currentDate.format(DATE_TIME_FORMAT),
+          rescheduleEndTime: currentDate.format(DATE_TIME_FORMAT),
           rescheduleApproved: true,
+          interviewStatus: 'BBBBBB',
         },
         elemDefault
       );
@@ -115,7 +118,7 @@ describe('Interview Service', () => {
           endTime: currentDate,
           rescheduleDate: currentDate,
           rescheduleStartTime: currentDate,
-          rescheduleEndTIme: currentDate,
+          rescheduleEndTime: currentDate,
         },
         returnedFromService
       );
@@ -148,7 +151,7 @@ describe('Interview Service', () => {
           endTime: currentDate,
           rescheduleDate: currentDate,
           rescheduleStartTime: currentDate,
-          rescheduleEndTIme: currentDate,
+          rescheduleEndTime: currentDate,
         },
         returnedFromService
       );
@@ -171,8 +174,9 @@ describe('Interview Service', () => {
           resceduled: 1,
           rescheduleDate: currentDate.format(DATE_FORMAT),
           rescheduleStartTime: currentDate.format(DATE_TIME_FORMAT),
-          rescheduleEndTIme: currentDate.format(DATE_TIME_FORMAT),
+          rescheduleEndTime: currentDate.format(DATE_TIME_FORMAT),
           rescheduleApproved: true,
+          interviewStatus: 'BBBBBB',
         },
         elemDefault
       );
@@ -184,7 +188,7 @@ describe('Interview Service', () => {
           endTime: currentDate,
           rescheduleDate: currentDate,
           rescheduleStartTime: currentDate,
-          rescheduleEndTIme: currentDate,
+          rescheduleEndTime: currentDate,
         },
         returnedFromService
       );
@@ -234,7 +238,7 @@ describe('Interview Service', () => {
       });
 
       it('should add only unique Interview to an array', () => {
-        const interviewArray: IInterview[] = [{ id: 'ABC' }, { id: 'CBA' }, { id: '1369c5e2-30cd-46a3-be5a-bb2479efa035' }];
+        const interviewArray: IInterview[] = [{ id: 'ABC' }, { id: 'CBA' }, { id: '369c5e23-0cd6-4a3b-a5ab-b2479efa035f' }];
         const interviewCollection: IInterview[] = [{ id: 'ABC' }];
         expectedResult = service.addInterviewToCollectionIfMissing(interviewCollection, ...interviewArray);
         expect(expectedResult).toHaveLength(3);

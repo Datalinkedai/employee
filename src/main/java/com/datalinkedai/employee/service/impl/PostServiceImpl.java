@@ -1,10 +1,23 @@
 package com.datalinkedai.employee.service.impl;
 
+import com.datalinkedai.employee.domain.Interview;
 import com.datalinkedai.employee.domain.Post;
+import com.datalinkedai.employee.domain.User;
 import com.datalinkedai.employee.repository.PostRepository;
+import com.datalinkedai.employee.repository.UserRepository;
+import com.datalinkedai.employee.security.SecurityUtils;
+import com.datalinkedai.employee.service.InterviewService;
 import com.datalinkedai.employee.service.PostService;
+import com.datalinkedai.employee.service.UserService;
+
+import java.time.Clock;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.concurrent.ExecutionException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -23,6 +36,14 @@ public class PostServiceImpl implements PostService {
     public PostServiceImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
+
+    @Autowired
+    private InterviewService interviewService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    private User login;
 
     @Override
     public Mono<Post> save(Post post) {
@@ -96,5 +117,27 @@ public class PostServiceImpl implements PostService {
     public Mono<Void> delete(String id) {
         log.debug("Request to delete Post : {}", id);
         return postRepository.deleteById(id);
+    }
+
+    @Override
+    public Mono<Interview> applyForJob(String postId) throws Exception {
+        // User userLogin = null;
+        User userLogin = SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin).toFuture().get();
+        // SecurityUtils.getCurrentUserLogin().flatMap(login -> {
+        //     this.userLogin = login;
+        // });
+    //    User userLogin = userService.getUserWithAuthorities().flatMap(userRepository::findOneByLogin);
+       if(userLogin == null) throw new Exception("Logged In User not found");
+        log.debug("testing: {}",userLogin);
+        // Post applyingPost =this.findOne(postId).subscribe(post -> applyingPost = post, throwable -> applyingPost = null);
+        Post applyingPost = this.findOne(postId).toFuture().get();
+        Interview interview = new Interview();
+        interview.setInterviewName(applyingPost.getPostName()+" "+userLogin);
+        interview.setScheduledDate(LocalDate.now().plusDays(2));
+        interview.setStartTime(Instant.now().plusSeconds(20));
+        interview.endTime(Instant.now().plusSeconds(300));
+        System.out.println(interview);
+        // Interview interviewMono = Mono.just(interview);
+        return interviewService.save(interview);
     }
 }

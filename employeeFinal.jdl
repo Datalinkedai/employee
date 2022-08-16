@@ -26,7 +26,7 @@ entity Interview {
   resceduled Integer,
   rescheduleDate LocalDate,
   rescheduleStartTime Instant,
-  rescheduleEndTIme Instant,
+  rescheduleEndTime Instant,
   rescheduleApproved Boolean
 }
 entity Training {

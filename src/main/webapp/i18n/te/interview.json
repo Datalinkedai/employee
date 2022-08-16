@@ -18,17 +18,19 @@
         "title": "Interview"
       },
       "id": "ID",
-      "interviewName": "Interview Name",
+      "interviewName": "పేరు",
       "scheduledDate": "Scheduled Date",
       "startTime": "Start Time",
       "endTime": "End Time",
       "resceduled": "Resceduled",
-      "rescheduleDate": "Reschedule Date",
-      "rescheduleStartTime": "Reschedule Start Time",
-      "rescheduleEndTIme": "Reschedule End T Ime",
+      "rescheduleDate": "రీషెడ్యూల్ తేదీ",
+      "rescheduleStartTime": "ప్రారంభ సమయాన్ని రీషెడ్యూల్ చేయండి",
+      "rescheduleEndTime": "ముగింపు సమయాన్ని రీషెడ్యూల్ చేయండి",
       "rescheduleApproved": "Reschedule Approved",
+      "interviewStatus": "Interview Status",
       "interviewBy": "Interview By",
-      "rescheduleApprovedBy": "Reschedule Approved By"
+      "rescheduleApprovedBy": "Reschedule Approved By",
+      "interviewFor": "Interview For"
     }
   }
 }
