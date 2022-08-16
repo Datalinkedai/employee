@@ -1,7 +1,8 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h3 id="jhi-interview-heading" data-cy="InterviewCreateUpdateHeading" jhiTranslate="employeeApp.interview.home.createOrEditLabel">
+      <h3 id="jhi-interview-heading" data-cy="InterviewCreateUpdateHeading"
+        jhiTranslate="employeeApp.interview.home.createOrEditLabel">
         Create or edit a Interview
       </h3>
 
@@ -14,17 +15,11 @@
         </div>-->
 
         <div class="row mb-3 py-3">
-          <label class="form-label" jhiTranslate="employeeApp.interview.interviewName" for="field_interviewName"></label>
+          <label class="form-label" jhiTranslate="employeeApp.interview.interviewName"
+            for="field_interviewName"></label>
           <div class="d-flex">
-          <input
-            type="text"
-            class="form-control"
-            name="interviewName"
-            id="field_interviewName"
-            data-cy="interviewName"
-            formControlName="interviewName"
-            
-          />
+            <input type="text" class="form-control" name="interviewName" id="field_interviewName"
+              data-cy="interviewName" formControlName="interviewName" />
           </div>
         </div>
 
@@ -115,18 +110,11 @@
         </div>-->
 
         <div class="row mb-3 py-3">
-          <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleDate" for="field_rescheduleDate">Reschedule Date</label>
+          <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleDate"
+            for="field_rescheduleDate">Reschedule Date</label>
           <div class="input-group">
-            <input
-              id="field_rescheduleDate"
-              data-cy="rescheduleDate"
-              type="text"
-              class="form-control"
-              name="rescheduleDate"
-              ngbDatepicker
-              #rescheduleDateDp="ngbDatepicker"
-              formControlName="rescheduleDate"
-            />
+            <input id="field_rescheduleDate" data-cy="rescheduleDate" type="text" class="form-control"
+              name="rescheduleDate" ngbDatepicker #rescheduleDateDp="ngbDatepicker" formControlName="rescheduleDate" />
             <button type="button" class="btn btn-secondary" (click)="rescheduleDateDp.toggle()">
               <fa-icon icon="calendar-alt"></fa-icon>
             </button>
@@ -150,51 +138,30 @@
           </div>
         </div>-->
 
-        <!--<div class="row mb-3">
-          <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleEndTIme" for="field_rescheduleEndTIme"
-            >Reschedule End T Ime</label
-          >
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleEndTime"
+            for="field_rescheduleEndTime">Reschedule End Time</label>
           <div class="d-flex">
-            <input
-              id="field_rescheduleEndTIme"
-              data-cy="rescheduleEndTIme"
-              type="time"
-              class="form-control"
-              name="rescheduleEndTIme"
-              formControlName="rescheduleEndTIme"
-              placeholder="00:00"
-            />
+            <input id="field_rescheduleEndTime" data-cy="rescheduleEndTime" type="time" class="form-control"
+              name="rescheduleEndTime" formControlName="rescheduleEndTime" placeholder="00:00" />
           </div>
-        </div>-->
+        </div>
 
         <div class="row py-3">
           <div class="col">
-            <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleStartTime" for="field_rescheduleStartTime">Reschedule Start Time</label>
+            <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleStartTime"
+              for="field_rescheduleStartTime">Reschedule Start Time</label>
             <div class="d-flex">
-              <input
-              id="field_rescheduleStartTime"
-              data-cy="rescheduleStartTime"
-              type="time"
-              class="form-control"
-              name="rescheduleStartTime"
-              formControlName="rescheduleStartTime"
-              placeholder="hh:mm"
-            />
+              <input id="field_rescheduleStartTime" data-cy="rescheduleStartTime" type="time" class="form-control"
+                name="rescheduleStartTime" formControlName="rescheduleStartTime" placeholder="hh:mm" />
             </div>
           </div>
           <div class="col">
-            <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleEndTIme" for="field_rescheduleEndTIme"
-            >Reschedule End Time</label>
+            <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleEndTime"
+              for="field_rescheduleEndTime">Reschedule End Time</label>
             <div class="d-flex">
-              <input
-                id="field_rescheduleEndTIme"
-                data-cy="rescheduleEndTIme"
-                type="time"
-                class="form-control"
-                name="rescheduleEndTIme"
-                formControlName="rescheduleEndTIme"
-                placeholder="hh:mm"
-              />
+              <input id="field_rescheduleEndTime" data-cy="rescheduleEndTime" type="time" class="form-control"
+                name="rescheduleEndTime" formControlName="rescheduleEndTime" placeholder="hh:mm" />
             </div>
           </div>
         </div>
@@ -205,22 +172,18 @@
             Approve the change in time
           </label>
         </div>
+      </div>
 
-        
-        <div class="d-grid gap-2 col-2 mx-auto py-1">
-          <!-- <button class="btn btn-primary" type="button" padding="15px 32px">Confirm</button> -->
-          <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
+
+      <div class="d-grid gap-2 col-2 mx-auto py-1">
+        <!-- <button class="btn btn-primary" type="button" padding="15px 32px">Confirm</button> -->
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
           <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
-        </div> 
-        
-        <!--<button
+      </div>
+
+      <!--<button
           type="confirm"
           id="confirm-entity"
           data-cy="entityCreateConfirmButton"
@@ -230,7 +193,7 @@
           <fa-icon icon="confirm"></fa-icon>&nbsp;<span jhiTranslate="entity.action.confirm">Confirm</span>
         </button>-->
 
-        <!--<div class="row mb-3">
+      <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleApproved" for="field_rescheduleApproved"
             >Approve the change in time</label
           >
@@ -244,22 +207,33 @@
           />
         </div>-->
 
-        <!--<div class="row mb-3">
-          <label class="form-label" jhiTranslate="employeeApp.interview.interviewBy" for="field_interviewBy">Interview By</label>
-          <select class="form-control" id="field_interviewBy" data-cy="interviewBy" name="interviewBy" formControlName="interviewBy">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="
-                candidateOption.id === editForm.get('interviewBy')!.value?.id ? editForm.get('interviewBy')!.value : candidateOption
-              "
-              *ngFor="let candidateOption of interviewBiesCollection; trackBy: trackCandidateById"
-            >
-              {{ candidateOption.id }}
-            </option>
-          </select>
-        </div>-->
+      <!-- <div class="row mb-3">
+        <label class="form-label" jhiTranslate="employeeApp.interview.interviewStatus"
+          for="field_interviewStatus">Interview Status</label>
+        <select class="form-control" name="interviewStatus" formControlName="interviewStatus" id="field_interviewStatus"
+          data-cy="interviewStatus">
+          <option [ngValue]="null">{{ 'employeeApp.InterviewStatus.null' | translate }}</option>
+          <option *ngFor="let interviewStatus of interviewStatusValues" [value]="interviewStatus">
+            {{ 'employeeApp.InterviewStatus.' + interviewStatus | translate }}
+          </option>
+        </select>
+      </div>
 
-        <!--<div class="row mb-3">
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="employeeApp.interview.interviewBy" for="field_interviewBy">Interview
+          By</label>
+        <select class="form-control" id="field_interviewBy" data-cy="interviewBy" name="interviewBy"
+          formControlName="interviewBy">
+          <option [ngValue]="null"></option>
+          <option [ngValue]="
+                candidateOption.id === editForm.get('interviewBy')!.value?.id ? editForm.get('interviewBy')!.value : candidateOption
+              " *ngFor="let candidateOption of interviewBiesCollection; trackBy: trackCandidateById">
+            {{ candidateOption.id }}
+          </option>
+        </select>
+      </div> -->
+
+      <!--<div class="row mb-3">
           <label class="form-label" jhiTranslate="employeeApp.interview.rescheduleApprovedBy" for="field_rescheduleApprovedBy"
             >Reschedule Approved By</label
           >
@@ -283,9 +257,24 @@
             </option>
           </select>
         </div>
-      </div>-->
 
-      <!--<div>
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="employeeApp.interview.interviewFor" for="field_interviewFor">Interview For</label>
+          <select class="form-control" id="field_interviewFor" data-cy="interviewFor" name="interviewFor" formControlName="interviewFor">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                candidateOption.id === editForm.get('interviewFor')!.value?.id ? editForm.get('interviewFor')!.value : candidateOption
+              "
+              *ngFor="let candidateOption of interviewForsCollection; trackBy: trackCandidateById"
+            >
+              {{ candidateOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
@@ -299,9 +288,9 @@
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
-      </div>-->
-      
       </div>
+
+  </div>-->
     </form>
   </div>
 </div>

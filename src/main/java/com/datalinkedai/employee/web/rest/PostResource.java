@@ -229,13 +229,13 @@ public class PostResource {
     }
 
     @GetMapping("/posts/apply/{id}")
-    public Mono<ResponseEntity<Interview>> applyPost(@PathVariable String id) throws Exception {
+    public Mono<ResponseEntity<Interview>> applyPost(@PathVariable String id) {
         log.debug("REST request to get Post : {}", id);
         Mono<Interview> post;
         try {
             post = postService.applyForJob(id);
         } catch (Exception e) {
-            throw new Exception("Error while applying for job"+e.getMessage());
+            return Mono.just(ResponseEntity.badRequest().body(null));
         }
         return ResponseUtil.wrapOrNotFound(post);
     }

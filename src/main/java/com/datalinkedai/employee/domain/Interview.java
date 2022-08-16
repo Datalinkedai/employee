@@ -1,5 +1,6 @@
 package com.datalinkedai.employee.domain;
 
+import com.datalinkedai.employee.domain.enumeration.InterviewStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
@@ -42,17 +43,23 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
     @Field("reschedule_start_time")
     private Instant rescheduleStartTime;
 
-    @Field("reschedule_end_t_ime")
-    private Instant rescheduleEndTIme;
+    @Field("reschedule_end_time")
+    private Instant rescheduleEndTime;
 
     @Field("reschedule_approved")
     private Boolean rescheduleApproved;
+
+    @Field("interview_status")
+    private InterviewStatus interviewStatus;
 
     @Field("interviewBy")
     private Candidate interviewBy;
 
     @Field("rescheduleApprovedBy")
     private Candidate rescheduleApprovedBy;
+
+    @Field("interviewFor")
+    private Candidate interviewFor;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -160,17 +167,17 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
         this.rescheduleStartTime = rescheduleStartTime;
     }
 
-    public Instant getRescheduleEndTIme() {
-        return this.rescheduleEndTIme;
+    public Instant getRescheduleEndTime() {
+        return this.rescheduleEndTime;
     }
 
-    public Interview rescheduleEndTIme(Instant rescheduleEndTIme) {
-        this.setRescheduleEndTIme(rescheduleEndTIme);
+    public Interview rescheduleEndTime(Instant rescheduleEndTime) {
+        this.setRescheduleEndTime(rescheduleEndTime);
         return this;
     }
 
-    public void setRescheduleEndTIme(Instant rescheduleEndTIme) {
-        this.rescheduleEndTIme = rescheduleEndTIme;
+    public void setRescheduleEndTime(Instant rescheduleEndTime) {
+        this.rescheduleEndTime = rescheduleEndTime;
     }
 
     public Boolean getRescheduleApproved() {
@@ -184,6 +191,19 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
 
     public void setRescheduleApproved(Boolean rescheduleApproved) {
         this.rescheduleApproved = rescheduleApproved;
+    }
+
+    public InterviewStatus getInterviewStatus() {
+        return this.interviewStatus;
+    }
+
+    public Interview interviewStatus(InterviewStatus interviewStatus) {
+        this.setInterviewStatus(interviewStatus);
+        return this;
+    }
+
+    public void setInterviewStatus(InterviewStatus interviewStatus) {
+        this.interviewStatus = interviewStatus;
     }
 
     public Candidate getInterviewBy() {
@@ -209,6 +229,19 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
 
     public Interview rescheduleApprovedBy(Candidate candidate) {
         this.setRescheduleApprovedBy(candidate);
+        return this;
+    }
+
+    public Candidate getInterviewFor() {
+        return this.interviewFor;
+    }
+
+    public void setInterviewFor(Candidate candidate) {
+        this.interviewFor = candidate;
+    }
+
+    public Interview interviewFor(Candidate candidate) {
+        this.setInterviewFor(candidate);
         return this;
     }
 
@@ -243,8 +276,9 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
             ", resceduled=" + getResceduled() +
             ", rescheduleDate='" + getRescheduleDate() + "'" +
             ", rescheduleStartTime='" + getRescheduleStartTime() + "'" +
-            ", rescheduleEndTIme='" + getRescheduleEndTIme() + "'" +
+            ", rescheduleEndTime='" + getRescheduleEndTime() + "'" +
             ", rescheduleApproved='" + getRescheduleApproved() + "'" +
+            ", interviewStatus='" + getInterviewStatus() + "'" +
             "}";
     }
 }

@@ -1,0 +1,11 @@
+{
+  "employeeApp": {
+    "InterviewStatus": {
+      "null": "",
+      "ACCEPTED": "accepted",
+      "REJECTED": "rejected",
+      "SCHEDULED": "scheduled",
+      "ONHOLD": "onhold"
+    }
+  }
+}

@@ -30,7 +30,7 @@
         <dd>
           <span>{{ interview.endTime | formatMediumDatetime }}</span>
         </dd>
-        <!-- <dt><span jhiTranslate="employeeApp.interview.resceduled">Resceduled</span></dt>
+        <dt><span jhiTranslate="employeeApp.interview.resceduled">Resceduled</span></dt>
         <dd>
           <span>{{ interview.resceduled }}</span>
         </dd>
@@ -44,13 +44,17 @@
         </dd>
         
         
-        <dt><span jhiTranslate="employeeApp.interview.rescheduleEndTIme">Reschedule End TIme</span></dt>
+        <dt><span jhiTranslate="employeeApp.interview.rescheduleEndTime">Reschedule End Time</span></dt>
         <dd>
-          <span>{{ interview.rescheduleEndTIme | formatMediumDatetime }}</span>
+          <span>{{ interview.rescheduleEndTime | formatMediumDatetime }}</span>
         </dd>
         <dt><span jhiTranslate="employeeApp.interview.rescheduleApproved">Reschedule Approved</span></dt>
         <dd>
           <span>{{ interview.rescheduleApproved }}</span>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.interviewStatus">Interview Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'employeeApp.InterviewStatus.' + interview.interviewStatus }}">{{ interview.interviewStatus }}</span>
         </dd>
         <dt><span jhiTranslate="employeeApp.interview.interviewBy">Interview By</span></dt>
         <dd>
@@ -62,8 +66,14 @@
         <dd>
           <div *ngIf="interview.rescheduleApprovedBy">
             <a [routerLink]="['/candidate', interview.rescheduleApprovedBy?.id, 'view']">{{ interview.rescheduleApprovedBy?.id }}</a>
-          </div> -->
-        <!-- </dd> -->
+          </div>
+        </dd>
+        <dt><span jhiTranslate="employeeApp.interview.interviewFor">Interview For</span></dt>
+        <dd>
+          <div *ngIf="interview.interviewFor">
+            <a [routerLink]="['/candidate', interview.interviewFor?.id, 'view']">{{ interview.interviewFor?.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

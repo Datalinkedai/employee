@@ -25,10 +25,12 @@
       "resceduled": "Resceduled",
       "rescheduleDate": "पुनर्निर्धारित तिथि",
       "rescheduleStartTime": "पुनर्निर्धारित प्रारंभ समय",
-      "rescheduleEndTIme": "पुनर्निर्धारित समाप्ति समय",
+      "rescheduleEndTime": "पुनर्निर्धारित समाप्ति समय",
       "rescheduleApproved": "Reschedule Approved",
+      "interviewStatus": "Interview Status",
       "interviewBy": "Interview By",
-      "rescheduleApprovedBy": "Reschedule Approved By"
+      "rescheduleApprovedBy": "Reschedule Approved By",
+      "interviewFor": "Interview For"
     }
   }
 }
