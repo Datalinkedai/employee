@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
 import dayjs from 'dayjs/esm';
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
+import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/config/input.constants';
 
 import { IInterview, Interview } from '../interview.model';
 import { InterviewService } from '../service/interview.service';
@@ -74,6 +74,12 @@ export class InterviewUpdateComponent implements OnInit {
     this.isSaving = true;
     const interview = this.createFromForm();
     if (interview.id !== undefined) {
+      this.editForm.patchValue({
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        rescheduleStartTime: this.editForm.get('rescheduleDate')!.value.format(DATE_FORMAT)+ "T" +this.editForm.get('rescheduleStartTime')!.value,
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        rescheduleEndTime: this.editForm.get('rescheduleDate')!.value.format(DATE_FORMAT)+ "T" +this.editForm.get('rescheduleEndTime')!.value,
+      });
       this.subscribeToSaveResponse(this.interviewService.update(interview));
     } else {
       this.subscribeToSaveResponse(this.interviewService.create(interview));
@@ -82,6 +88,16 @@ export class InterviewUpdateComponent implements OnInit {
 
   trackCandidateById(_index: number, item: ICandidate): string {
     return item.id!;
+  }
+
+  confirmClicked(): void{
+    this.editForm.patchValue({
+      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+      rescheduleStartTime: this.editForm.get('rescheduleDate')!.value.format(DATE_FORMAT)+ "T" +this.editForm.get('rescheduleStartTime')!.value,
+    });
+    console.error(this.editForm.value);
+    console.error(this.editForm.get('endTime')!.value);
+    console.error(this.editForm.get('rescheduleStartTime')!.value);
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IInterview>>): void {
@@ -190,4 +206,5 @@ export class InterviewUpdateComponent implements OnInit {
       interviewFor: this.editForm.get(['interviewFor'])!.value,
     };
   }
+
 }

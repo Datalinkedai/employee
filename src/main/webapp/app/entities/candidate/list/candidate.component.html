@@ -1,8 +1,51 @@
 <div>
   <h2 id="page-heading" data-cy="CandidateHeading">
     <span jhiTranslate="employeeApp.candidate.home.title">Candidates</span>
+  </h2>
+  <jhi-alert-error></jhi-alert-error>
 
-    <div class="d-flex justify-content-end">
+  <jhi-alert></jhi-alert>
+  <div class="row px-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Applied</div>
+        <div class="card-body">
+          <h5 class="card-title">5</h5>
+          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Rejected</div>
+        <div class="card-body">
+          <h5 class="card-title">3</h5>
+          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Interview Scheduled</div>
+        <div class="card-body">
+          <h5 class="card-title">1</h5>
+          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text">Post Name</p>
+      <p class="card-text">Interview Date</p>
+      <p class="card-text">Interview Time</p>
+      <p class="card-text">Mode</p>
+    </div>
+  </div>
+  <!-- <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="employeeApp.candidate.home.refreshListLabel">Refresh List</span>
@@ -90,5 +133,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 </div>
