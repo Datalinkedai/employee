@@ -167,17 +167,17 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
         this.rescheduleStartTime = rescheduleStartTime;
     }
 
-    public Instant getRescheduleEndTIme() {
+    public Instant getRescheduleEndTime() {
         return this.rescheduleEndTime;
     }
 
-    public Interview rescheduleEndTIme(Instant rescheduleEndTIme) {
-        this.setRescheduleEndTIme(rescheduleEndTIme);
+    public Interview rescheduleEndTime(Instant rescheduleEndTime) {
+        this.setRescheduleEndTime(rescheduleEndTime);
         return this;
     }
 
-    public void setRescheduleEndTIme(Instant rescheduleEndTIme) {
-        this.rescheduleEndTime = rescheduleEndTIme;
+    public void setRescheduleEndTime(Instant rescheduleEndTime) {
+        this.rescheduleEndTime = rescheduleEndTime;
     }
 
     public Boolean getRescheduleApproved() {
@@ -276,7 +276,7 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
             ", resceduled=" + getResceduled() +
             ", rescheduleDate='" + getRescheduleDate() + "'" +
             ", rescheduleStartTime='" + getRescheduleStartTime() + "'" +
-            ", rescheduleEndTIme='" + getRescheduleEndTIme() + "'" +
+            ", rescheduleEndTime='" + getRescheduleEndTime() + "'" +
             ", rescheduleApproved='" + getRescheduleApproved() + "'" +
             ", interviewStatus='" + getInterviewStatus() + "'" +
             "}";

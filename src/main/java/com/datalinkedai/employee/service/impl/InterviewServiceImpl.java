@@ -64,8 +64,8 @@ public class InterviewServiceImpl implements InterviewService {
                 if (interview.getRescheduleStartTime() != null) {
                     existingInterview.setRescheduleStartTime(interview.getRescheduleStartTime());
                 }
-                if (interview.getRescheduleEndTIme() != null) {
-                    existingInterview.setRescheduleEndTIme(interview.getRescheduleEndTIme());
+                if (interview.getRescheduleEndTime() != null) {
+                    existingInterview.setRescheduleEndTime(interview.getRescheduleEndTime());
                 }
                 if (interview.getRescheduleApproved() != null) {
                     existingInterview.setRescheduleApproved(interview.getRescheduleApproved());

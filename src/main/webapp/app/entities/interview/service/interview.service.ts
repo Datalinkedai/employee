@@ -84,7 +84,7 @@ export class InterviewService {
       endTime: interview.endTime?.isValid() ? interview.endTime.toJSON() : undefined,
       rescheduleDate: interview.rescheduleDate?.isValid() ? interview.rescheduleDate.format(DATE_FORMAT) : undefined,
       rescheduleStartTime: interview.rescheduleStartTime?.isValid() ? interview.rescheduleStartTime.toJSON() : undefined,
-      rescheduleEndTIme: interview.rescheduleEndTIme?.isValid() ? interview.rescheduleEndTIme.toJSON() : undefined,
+      rescheduleEndTime: interview.rescheduleEndTime?.isValid() ? interview.rescheduleEndTime.toJSON() : undefined,
     });
   }
 
@@ -95,7 +95,7 @@ export class InterviewService {
       res.body.endTime = res.body.endTime ? dayjs(res.body.endTime) : undefined;
       res.body.rescheduleDate = res.body.rescheduleDate ? dayjs(res.body.rescheduleDate) : undefined;
       res.body.rescheduleStartTime = res.body.rescheduleStartTime ? dayjs(res.body.rescheduleStartTime) : undefined;
-      res.body.rescheduleEndTIme = res.body.rescheduleEndTIme ? dayjs(res.body.rescheduleEndTIme) : undefined;
+      res.body.rescheduleEndTime = res.body.rescheduleEndTime ? dayjs(res.body.rescheduleEndTime) : undefined;
     }
     return res;
   }
@@ -108,7 +108,7 @@ export class InterviewService {
         interview.endTime = interview.endTime ? dayjs(interview.endTime) : undefined;
         interview.rescheduleDate = interview.rescheduleDate ? dayjs(interview.rescheduleDate) : undefined;
         interview.rescheduleStartTime = interview.rescheduleStartTime ? dayjs(interview.rescheduleStartTime) : undefined;
-        interview.rescheduleEndTIme = interview.rescheduleEndTIme ? dayjs(interview.rescheduleEndTIme) : undefined;
+        interview.rescheduleEndTime = interview.rescheduleEndTime ? dayjs(interview.rescheduleEndTime) : undefined;
       });
     }
     return res;

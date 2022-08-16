@@ -40,7 +40,7 @@
           <th scope="col"><span jhiTranslate="employeeApp.interview.resceduled">Resceduled</span></th>
           <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleDate">Reschedule Date</span></th>
           <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleStartTime">Reschedule Start Time</span></th>
-          <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleEndTIme">Reschedule End T Ime</span></th>
+          <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleEndTime">Reschedule End Time</span></th>
           <th scope="col"><span jhiTranslate="employeeApp.interview.rescheduleApproved">Reschedule Approved</span></th>
           <th scope="col"><span jhiTranslate="employeeApp.interview.interviewStatus">Interview Status</span></th>
           <th scope="col"><span jhiTranslate="employeeApp.interview.interviewBy">Interview By</span></th>
@@ -61,7 +61,7 @@
           <td>{{ interview.resceduled }}</td>
           <td>{{ interview.rescheduleDate | formatMediumDate }}</td>
           <td>{{ interview.rescheduleStartTime | formatMediumDatetime }}</td>
-          <td>{{ interview.rescheduleEndTIme | formatMediumDatetime }}</td>
+          <td>{{ interview.rescheduleEndTime | formatMediumDatetime }}</td>
           <td>{{ interview.rescheduleApproved }}</td>
           <td jhiTranslate="{{ 'employeeApp.InterviewStatus.' + interview.interviewStatus }}">{{ interview.interviewStatus }}</td>
           <td>

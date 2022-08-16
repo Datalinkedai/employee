@@ -11,7 +11,7 @@ export interface IInterview {
   resceduled?: number | null;
   rescheduleDate?: dayjs.Dayjs | null;
   rescheduleStartTime?: dayjs.Dayjs | null;
-  rescheduleEndTIme?: dayjs.Dayjs | null;
+  rescheduleEndTime?: dayjs.Dayjs | null;
   rescheduleApproved?: boolean | null;
   interviewStatus?: InterviewStatus | null;
   interviewBy?: ICandidate | null;
@@ -29,7 +29,7 @@ export class Interview implements IInterview {
     public resceduled?: number | null,
     public rescheduleDate?: dayjs.Dayjs | null,
     public rescheduleStartTime?: dayjs.Dayjs | null,
-    public rescheduleEndTIme?: dayjs.Dayjs | null,
+    public rescheduleEndTime?: dayjs.Dayjs | null,
     public rescheduleApproved?: boolean | null,
     public interviewStatus?: InterviewStatus | null,
     public interviewBy?: ICandidate | null,

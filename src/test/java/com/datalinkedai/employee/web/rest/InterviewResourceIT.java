@@ -52,8 +52,8 @@ class InterviewResourceIT {
     private static final Instant DEFAULT_RESCHEDULE_START_TIME = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_RESCHEDULE_START_TIME = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final Instant DEFAULT_RESCHEDULE_END_T_IME = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_RESCHEDULE_END_T_IME = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant DEFAULT_RESCHEDULE_END_TIME = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_RESCHEDULE_END_TIME = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final Boolean DEFAULT_RESCHEDULE_APPROVED = false;
     private static final Boolean UPDATED_RESCHEDULE_APPROVED = true;
@@ -87,7 +87,7 @@ class InterviewResourceIT {
             .resceduled(DEFAULT_RESCEDULED)
             .rescheduleDate(DEFAULT_RESCHEDULE_DATE)
             .rescheduleStartTime(DEFAULT_RESCHEDULE_START_TIME)
-            .rescheduleEndTIme(DEFAULT_RESCHEDULE_END_T_IME)
+            .rescheduleEndTime(DEFAULT_RESCHEDULE_END_TIME)
             .rescheduleApproved(DEFAULT_RESCHEDULE_APPROVED)
             .interviewStatus(DEFAULT_INTERVIEW_STATUS);
         return interview;
@@ -108,7 +108,7 @@ class InterviewResourceIT {
             .resceduled(UPDATED_RESCEDULED)
             .rescheduleDate(UPDATED_RESCHEDULE_DATE)
             .rescheduleStartTime(UPDATED_RESCHEDULE_START_TIME)
-            .rescheduleEndTIme(UPDATED_RESCHEDULE_END_T_IME)
+            .rescheduleEndTime(UPDATED_RESCHEDULE_END_TIME)
             .rescheduleApproved(UPDATED_RESCHEDULE_APPROVED)
             .interviewStatus(UPDATED_INTERVIEW_STATUS);
         return interview;
@@ -144,7 +144,7 @@ class InterviewResourceIT {
         assertThat(testInterview.getResceduled()).isEqualTo(DEFAULT_RESCEDULED);
         assertThat(testInterview.getRescheduleDate()).isEqualTo(DEFAULT_RESCHEDULE_DATE);
         assertThat(testInterview.getRescheduleStartTime()).isEqualTo(DEFAULT_RESCHEDULE_START_TIME);
-        assertThat(testInterview.getRescheduleEndTIme()).isEqualTo(DEFAULT_RESCHEDULE_END_T_IME);
+        assertThat(testInterview.getRescheduleEndTime()).isEqualTo(DEFAULT_RESCHEDULE_END_TIME);
         assertThat(testInterview.getRescheduleApproved()).isEqualTo(DEFAULT_RESCHEDULE_APPROVED);
         assertThat(testInterview.getInterviewStatus()).isEqualTo(DEFAULT_INTERVIEW_STATUS);
     }
@@ -222,7 +222,7 @@ class InterviewResourceIT {
         assertThat(testInterview.getResceduled()).isEqualTo(DEFAULT_RESCEDULED);
         assertThat(testInterview.getRescheduleDate()).isEqualTo(DEFAULT_RESCHEDULE_DATE);
         assertThat(testInterview.getRescheduleStartTime()).isEqualTo(DEFAULT_RESCHEDULE_START_TIME);
-        assertThat(testInterview.getRescheduleEndTIme()).isEqualTo(DEFAULT_RESCHEDULE_END_T_IME);
+        assertThat(testInterview.getRescheduleEndTime()).isEqualTo(DEFAULT_RESCHEDULE_END_TIME);
         assertThat(testInterview.getRescheduleApproved()).isEqualTo(DEFAULT_RESCHEDULE_APPROVED);
         assertThat(testInterview.getInterviewStatus()).isEqualTo(DEFAULT_INTERVIEW_STATUS);
     }
@@ -259,8 +259,8 @@ class InterviewResourceIT {
             .value(hasItem(DEFAULT_RESCHEDULE_DATE.toString()))
             .jsonPath("$.[*].rescheduleStartTime")
             .value(hasItem(DEFAULT_RESCHEDULE_START_TIME.toString()))
-            .jsonPath("$.[*].rescheduleEndTIme")
-            .value(hasItem(DEFAULT_RESCHEDULE_END_T_IME.toString()))
+            .jsonPath("$.[*].rescheduleEndTime")
+            .value(hasItem(DEFAULT_RESCHEDULE_END_TIME.toString()))
             .jsonPath("$.[*].rescheduleApproved")
             .value(hasItem(DEFAULT_RESCHEDULE_APPROVED.booleanValue()))
             .jsonPath("$.[*].interviewStatus")
@@ -299,8 +299,8 @@ class InterviewResourceIT {
             .value(is(DEFAULT_RESCHEDULE_DATE.toString()))
             .jsonPath("$.rescheduleStartTime")
             .value(is(DEFAULT_RESCHEDULE_START_TIME.toString()))
-            .jsonPath("$.rescheduleEndTIme")
-            .value(is(DEFAULT_RESCHEDULE_END_T_IME.toString()))
+            .jsonPath("$.rescheduleEndTime")
+            .value(is(DEFAULT_RESCHEDULE_END_TIME.toString()))
             .jsonPath("$.rescheduleApproved")
             .value(is(DEFAULT_RESCHEDULE_APPROVED.booleanValue()))
             .jsonPath("$.interviewStatus")
@@ -336,7 +336,7 @@ class InterviewResourceIT {
             .resceduled(UPDATED_RESCEDULED)
             .rescheduleDate(UPDATED_RESCHEDULE_DATE)
             .rescheduleStartTime(UPDATED_RESCHEDULE_START_TIME)
-            .rescheduleEndTIme(UPDATED_RESCHEDULE_END_T_IME)
+            .rescheduleEndTime(UPDATED_RESCHEDULE_END_TIME)
             .rescheduleApproved(UPDATED_RESCHEDULE_APPROVED)
             .interviewStatus(UPDATED_INTERVIEW_STATUS);
 
@@ -360,7 +360,7 @@ class InterviewResourceIT {
         assertThat(testInterview.getResceduled()).isEqualTo(UPDATED_RESCEDULED);
         assertThat(testInterview.getRescheduleDate()).isEqualTo(UPDATED_RESCHEDULE_DATE);
         assertThat(testInterview.getRescheduleStartTime()).isEqualTo(UPDATED_RESCHEDULE_START_TIME);
-        assertThat(testInterview.getRescheduleEndTIme()).isEqualTo(UPDATED_RESCHEDULE_END_T_IME);
+        assertThat(testInterview.getRescheduleEndTime()).isEqualTo(UPDATED_RESCHEDULE_END_TIME);
         assertThat(testInterview.getRescheduleApproved()).isEqualTo(UPDATED_RESCHEDULE_APPROVED);
         assertThat(testInterview.getInterviewStatus()).isEqualTo(UPDATED_INTERVIEW_STATUS);
     }
@@ -464,7 +464,7 @@ class InterviewResourceIT {
         assertThat(testInterview.getResceduled()).isEqualTo(DEFAULT_RESCEDULED);
         assertThat(testInterview.getRescheduleDate()).isEqualTo(UPDATED_RESCHEDULE_DATE);
         assertThat(testInterview.getRescheduleStartTime()).isEqualTo(UPDATED_RESCHEDULE_START_TIME);
-        assertThat(testInterview.getRescheduleEndTIme()).isEqualTo(DEFAULT_RESCHEDULE_END_T_IME);
+        assertThat(testInterview.getRescheduleEndTime()).isEqualTo(DEFAULT_RESCHEDULE_END_TIME);
         assertThat(testInterview.getRescheduleApproved()).isEqualTo(UPDATED_RESCHEDULE_APPROVED);
         assertThat(testInterview.getInterviewStatus()).isEqualTo(UPDATED_INTERVIEW_STATUS);
     }
@@ -488,7 +488,7 @@ class InterviewResourceIT {
             .resceduled(UPDATED_RESCEDULED)
             .rescheduleDate(UPDATED_RESCHEDULE_DATE)
             .rescheduleStartTime(UPDATED_RESCHEDULE_START_TIME)
-            .rescheduleEndTIme(UPDATED_RESCHEDULE_END_T_IME)
+            .rescheduleEndTime(UPDATED_RESCHEDULE_END_TIME)
             .rescheduleApproved(UPDATED_RESCHEDULE_APPROVED)
             .interviewStatus(UPDATED_INTERVIEW_STATUS);
 
@@ -512,7 +512,7 @@ class InterviewResourceIT {
         assertThat(testInterview.getResceduled()).isEqualTo(UPDATED_RESCEDULED);
         assertThat(testInterview.getRescheduleDate()).isEqualTo(UPDATED_RESCHEDULE_DATE);
         assertThat(testInterview.getRescheduleStartTime()).isEqualTo(UPDATED_RESCHEDULE_START_TIME);
-        assertThat(testInterview.getRescheduleEndTIme()).isEqualTo(UPDATED_RESCHEDULE_END_T_IME);
+        assertThat(testInterview.getRescheduleEndTime()).isEqualTo(UPDATED_RESCHEDULE_END_TIME);
         assertThat(testInterview.getRescheduleApproved()).isEqualTo(UPDATED_RESCHEDULE_APPROVED);
         assertThat(testInterview.getInterviewStatus()).isEqualTo(UPDATED_INTERVIEW_STATUS);
     }

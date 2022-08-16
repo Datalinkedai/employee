@@ -33,7 +33,7 @@ describe('Interview Service', () => {
       resceduled: 0,
       rescheduleDate: currentDate,
       rescheduleStartTime: currentDate,
-      rescheduleEndTIme: currentDate,
+      rescheduleEndTime: currentDate,
       rescheduleApproved: false,
       interviewStatus: InterviewStatus.ACCEPTED,
     };
@@ -48,7 +48,7 @@ describe('Interview Service', () => {
           endTime: currentDate.format(DATE_TIME_FORMAT),
           rescheduleDate: currentDate.format(DATE_FORMAT),
           rescheduleStartTime: currentDate.format(DATE_TIME_FORMAT),
-          rescheduleEndTIme: currentDate.format(DATE_TIME_FORMAT),
+          rescheduleEndTime: currentDate.format(DATE_TIME_FORMAT),
         },
         elemDefault
       );
@@ -69,7 +69,7 @@ describe('Interview Service', () => {
           endTime: currentDate.format(DATE_TIME_FORMAT),
           rescheduleDate: currentDate.format(DATE_FORMAT),
           rescheduleStartTime: currentDate.format(DATE_TIME_FORMAT),
-          rescheduleEndTIme: currentDate.format(DATE_TIME_FORMAT),
+          rescheduleEndTime: currentDate.format(DATE_TIME_FORMAT),
         },
         elemDefault
       );
@@ -81,7 +81,7 @@ describe('Interview Service', () => {
           endTime: currentDate,
           rescheduleDate: currentDate,
           rescheduleStartTime: currentDate,
-          rescheduleEndTIme: currentDate,
+          rescheduleEndTime: currentDate,
         },
         returnedFromService
       );
@@ -104,7 +104,7 @@ describe('Interview Service', () => {
           resceduled: 1,
           rescheduleDate: currentDate.format(DATE_FORMAT),
           rescheduleStartTime: currentDate.format(DATE_TIME_FORMAT),
-          rescheduleEndTIme: currentDate.format(DATE_TIME_FORMAT),
+          rescheduleEndTime: currentDate.format(DATE_TIME_FORMAT),
           rescheduleApproved: true,
           interviewStatus: 'BBBBBB',
         },
@@ -118,7 +118,7 @@ describe('Interview Service', () => {
           endTime: currentDate,
           rescheduleDate: currentDate,
           rescheduleStartTime: currentDate,
-          rescheduleEndTIme: currentDate,
+          rescheduleEndTime: currentDate,
         },
         returnedFromService
       );
@@ -151,7 +151,7 @@ describe('Interview Service', () => {
           endTime: currentDate,
           rescheduleDate: currentDate,
           rescheduleStartTime: currentDate,
-          rescheduleEndTIme: currentDate,
+          rescheduleEndTime: currentDate,
         },
         returnedFromService
       );
@@ -174,7 +174,7 @@ describe('Interview Service', () => {
           resceduled: 1,
           rescheduleDate: currentDate.format(DATE_FORMAT),
           rescheduleStartTime: currentDate.format(DATE_TIME_FORMAT),
-          rescheduleEndTIme: currentDate.format(DATE_TIME_FORMAT),
+          rescheduleEndTime: currentDate.format(DATE_TIME_FORMAT),
           rescheduleApproved: true,
           interviewStatus: 'BBBBBB',
         },
@@ -188,7 +188,7 @@ describe('Interview Service', () => {
           endTime: currentDate,
           rescheduleDate: currentDate,
           rescheduleStartTime: currentDate,
-          rescheduleEndTIme: currentDate,
+          rescheduleEndTime: currentDate,
         },
         returnedFromService
       );

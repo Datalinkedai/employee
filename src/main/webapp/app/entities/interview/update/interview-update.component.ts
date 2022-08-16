@@ -35,7 +35,7 @@ export class InterviewUpdateComponent implements OnInit {
     resceduled: [],
     rescheduleDate: [],
     rescheduleStartTime: [],
-    rescheduleEndTIme: [],
+    rescheduleEndTime: [],
     rescheduleApproved: [],
     interviewStatus: [],
     interviewBy: [],
@@ -57,7 +57,7 @@ export class InterviewUpdateComponent implements OnInit {
         interview.startTime = today;
         interview.endTime = today;
         interview.rescheduleStartTime = today;
-        interview.rescheduleEndTIme = today;
+        interview.rescheduleEndTime = today;
       }
 
       this.updateForm(interview);
@@ -113,7 +113,7 @@ export class InterviewUpdateComponent implements OnInit {
       resceduled: interview.resceduled,
       rescheduleDate: interview.rescheduleDate,
       rescheduleStartTime: interview.rescheduleStartTime ? interview.rescheduleStartTime.format(DATE_TIME_FORMAT) : null,
-      rescheduleEndTIme: interview.rescheduleEndTIme ? interview.rescheduleEndTIme.format(DATE_TIME_FORMAT) : null,
+      rescheduleEndTime: interview.rescheduleEndTime ? interview.rescheduleEndTime.format(DATE_TIME_FORMAT) : null,
       rescheduleApproved: interview.rescheduleApproved,
       interviewStatus: interview.interviewStatus,
       interviewBy: interview.interviewBy,
@@ -180,8 +180,8 @@ export class InterviewUpdateComponent implements OnInit {
       rescheduleStartTime: this.editForm.get(['rescheduleStartTime'])!.value
         ? dayjs(this.editForm.get(['rescheduleStartTime'])!.value, DATE_TIME_FORMAT)
         : undefined,
-      rescheduleEndTIme: this.editForm.get(['rescheduleEndTIme'])!.value
-        ? dayjs(this.editForm.get(['rescheduleEndTIme'])!.value, DATE_TIME_FORMAT)
+      rescheduleEndTime: this.editForm.get(['rescheduleEndTime'])!.value
+        ? dayjs(this.editForm.get(['rescheduleEndTime'])!.value, DATE_TIME_FORMAT)
         : undefined,
       rescheduleApproved: this.editForm.get(['rescheduleApproved'])!.value,
       interviewStatus: this.editForm.get(['interviewStatus'])!.value,
