@@ -100,4 +100,10 @@ public class InterviewServiceImpl implements InterviewService {
         log.debug("Request to delete Interview : {}", id);
         return interviewRepository.deleteById(id);
     }
+
+    @Override
+    public Flux<Interview> getInterviewByInterviewBy(String candidateId){
+        log.debug("Request to get interviewer details");
+        return interviewRepository.getInterviewByInterviewBy(candidateId);
+    }
 }
