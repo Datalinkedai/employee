@@ -66,7 +66,14 @@ public interface InterviewService {
     /**
      * @param candidateId
      * @param interviewStatus
-     * @return
+     * @return count of interview based on status and candidate
      */
     Mono<Integer> getInterviewScheduledForCandidate(String candidateId, String interviewStatus);
+
+    /**
+     *
+     * @param candidateId
+     * @return list of interview for an interviewer
+     */
+    Flux<Interview> getInterviewByInterviewBy(String candidateId);
 }

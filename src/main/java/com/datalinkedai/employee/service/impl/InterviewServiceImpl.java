@@ -106,4 +106,10 @@ public class InterviewServiceImpl implements InterviewService {
         log.debug("Request to schedule interview for candidate :{} {}", candidateId, interviewStatus);
         return interviewRepository.getCountofInterviewByCandidateId(candidateId, interviewStatus);
     }
+
+    @Override
+    public Flux<Interview> getInterviewByInterviewBy(String candidateId) {
+        log.debug("Request to get interviewer details");
+        return interviewRepository.getInterviewByInterviewBy(candidateId);
+    }
 }
