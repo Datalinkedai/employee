@@ -62,4 +62,11 @@ public interface InterviewService {
      * @return a Mono to signal the deletion
      */
     Mono<Void> delete(String id);
+
+    /**
+     * @param candidateId
+     * @param interviewStatus
+     * @return
+     */
+    Mono<Integer> getInterviewScheduledForCandidate(String candidateId, String interviewStatus);
 }

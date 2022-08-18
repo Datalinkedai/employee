@@ -100,4 +100,10 @@ public class InterviewServiceImpl implements InterviewService {
         log.debug("Request to delete Interview : {}", id);
         return interviewRepository.deleteById(id);
     }
+
+    @Override
+    public Mono<Integer> getInterviewScheduledForCandidate(String candidateId, String interviewStatus) {
+        log.debug("Request to schedule interview for candidate :{} {}", candidateId, interviewStatus);
+        return interviewRepository.getCountofInterviewByCandidateId(candidateId, interviewStatus);
+    }
 }
