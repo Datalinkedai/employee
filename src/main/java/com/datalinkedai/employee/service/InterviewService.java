@@ -76,4 +76,12 @@ public interface InterviewService {
      * @return list of interview for an interviewer
      */
     Flux<Interview> getInterviewByInterviewBy(String candidateId);
+
+    /**
+     *
+     * @param candidate
+     * @param interviewStatus
+     * @return
+     */
+    Mono<Interview> getInterviewByCandidateAndStatus(String candidate, String interviewStatus);
 }

@@ -112,4 +112,10 @@ public class InterviewServiceImpl implements InterviewService {
         log.debug("Request to get interviewer details");
         return interviewRepository.getInterviewByInterviewBy(candidateId);
     }
+
+    @Override
+    public Mono<Interview> getInterviewByCandidateAndStatus(String candidate, String interviewStatus) {
+        log.debug("Request interview status for candidate: {} {}", candidate, interviewStatus);
+        return interviewRepository.getInterviewByCandidateAndStatus(candidate, interviewStatus);
+    }
 }
