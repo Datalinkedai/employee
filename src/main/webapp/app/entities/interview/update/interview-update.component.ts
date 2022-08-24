@@ -6,12 +6,13 @@ import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
 import dayjs from 'dayjs/esm';
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
+import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/config/input.constants';
 
 import { IInterview, Interview } from '../interview.model';
 import { InterviewService } from '../service/interview.service';
 import { ICandidate } from 'app/entities/candidate/candidate.model';
 import { CandidateService } from 'app/entities/candidate/service/candidate.service';
+import { InterviewStatus } from 'app/entities/enumerations/interview-status.model';
 
 @Component({
   selector: 'jhi-interview-update',
@@ -19,9 +20,11 @@ import { CandidateService } from 'app/entities/candidate/service/candidate.servi
 })
 export class InterviewUpdateComponent implements OnInit {
   isSaving = false;
+  interviewStatusValues = Object.keys(InterviewStatus);
 
   interviewBiesCollection: ICandidate[] = [];
   rescheduleApprovedBiesCollection: ICandidate[] = [];
+  interviewForsCollection: ICandidate[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -32,10 +35,12 @@ export class InterviewUpdateComponent implements OnInit {
     resceduled: [],
     rescheduleDate: [],
     rescheduleStartTime: [],
-    rescheduleEndTIme: [],
+    rescheduleEndTime: [],
     rescheduleApproved: [],
+    interviewStatus: [],
     interviewBy: [],
     rescheduleApprovedBy: [],
+    interviewFor: [],
   });
 
   constructor(
@@ -52,7 +57,7 @@ export class InterviewUpdateComponent implements OnInit {
         interview.startTime = today;
         interview.endTime = today;
         interview.rescheduleStartTime = today;
-        interview.rescheduleEndTIme = today;
+        interview.rescheduleEndTime = today;
       }
 
       this.updateForm(interview);
@@ -69,6 +74,12 @@ export class InterviewUpdateComponent implements OnInit {
     this.isSaving = true;
     const interview = this.createFromForm();
     if (interview.id !== undefined) {
+      this.editForm.patchValue({
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        rescheduleStartTime: this.editForm.get('rescheduleDate')!.value.format(DATE_FORMAT)+ "T" +this.editForm.get('rescheduleStartTime')!.value,
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        rescheduleEndTime: this.editForm.get('rescheduleDate')!.value.format(DATE_FORMAT)+ "T" +this.editForm.get('rescheduleEndTime')!.value,
+      });
       this.subscribeToSaveResponse(this.interviewService.update(interview));
     } else {
       this.subscribeToSaveResponse(this.interviewService.create(interview));
@@ -77,6 +88,16 @@ export class InterviewUpdateComponent implements OnInit {
 
   trackCandidateById(_index: number, item: ICandidate): string {
     return item.id!;
+  }
+
+  confirmClicked(): void{
+    this.editForm.patchValue({
+      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+      rescheduleStartTime: this.editForm.get('rescheduleDate')!.value.format(DATE_FORMAT)+ "T" +this.editForm.get('rescheduleStartTime')!.value,
+    });
+    console.error(this.editForm.value);
+    console.error(this.editForm.get('endTime')!.value);
+    console.error(this.editForm.get('rescheduleStartTime')!.value);
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IInterview>>): void {
@@ -108,10 +129,12 @@ export class InterviewUpdateComponent implements OnInit {
       resceduled: interview.resceduled,
       rescheduleDate: interview.rescheduleDate,
       rescheduleStartTime: interview.rescheduleStartTime ? interview.rescheduleStartTime.format(DATE_TIME_FORMAT) : null,
-      rescheduleEndTIme: interview.rescheduleEndTIme ? interview.rescheduleEndTIme.format(DATE_TIME_FORMAT) : null,
+      rescheduleEndTime: interview.rescheduleEndTime ? interview.rescheduleEndTime.format(DATE_TIME_FORMAT) : null,
       rescheduleApproved: interview.rescheduleApproved,
+      interviewStatus: interview.interviewStatus,
       interviewBy: interview.interviewBy,
       rescheduleApprovedBy: interview.rescheduleApprovedBy,
+      interviewFor: interview.interviewFor,
     });
 
     this.interviewBiesCollection = this.candidateService.addCandidateToCollectionIfMissing(
@@ -121,6 +144,10 @@ export class InterviewUpdateComponent implements OnInit {
     this.rescheduleApprovedBiesCollection = this.candidateService.addCandidateToCollectionIfMissing(
       this.rescheduleApprovedBiesCollection,
       interview.rescheduleApprovedBy
+    );
+    this.interviewForsCollection = this.candidateService.addCandidateToCollectionIfMissing(
+      this.interviewForsCollection,
+      interview.interviewFor
     );
   }
 
@@ -144,6 +171,16 @@ export class InterviewUpdateComponent implements OnInit {
         )
       )
       .subscribe((candidates: ICandidate[]) => (this.rescheduleApprovedBiesCollection = candidates));
+
+    this.candidateService
+      .query({ filter: 'interview-is-null' })
+      .pipe(map((res: HttpResponse<ICandidate[]>) => res.body ?? []))
+      .pipe(
+        map((candidates: ICandidate[]) =>
+          this.candidateService.addCandidateToCollectionIfMissing(candidates, this.editForm.get('interviewFor')!.value)
+        )
+      )
+      .subscribe((candidates: ICandidate[]) => (this.interviewForsCollection = candidates));
   }
 
   protected createFromForm(): IInterview {
@@ -159,12 +196,15 @@ export class InterviewUpdateComponent implements OnInit {
       rescheduleStartTime: this.editForm.get(['rescheduleStartTime'])!.value
         ? dayjs(this.editForm.get(['rescheduleStartTime'])!.value, DATE_TIME_FORMAT)
         : undefined,
-      rescheduleEndTIme: this.editForm.get(['rescheduleEndTIme'])!.value
-        ? dayjs(this.editForm.get(['rescheduleEndTIme'])!.value, DATE_TIME_FORMAT)
+      rescheduleEndTime: this.editForm.get(['rescheduleEndTime'])!.value
+        ? dayjs(this.editForm.get(['rescheduleEndTime'])!.value, DATE_TIME_FORMAT)
         : undefined,
       rescheduleApproved: this.editForm.get(['rescheduleApproved'])!.value,
+      interviewStatus: this.editForm.get(['interviewStatus'])!.value,
       interviewBy: this.editForm.get(['interviewBy'])!.value,
       rescheduleApprovedBy: this.editForm.get(['rescheduleApprovedBy'])!.value,
+      interviewFor: this.editForm.get(['interviewFor'])!.value,
     };
   }
+
 }

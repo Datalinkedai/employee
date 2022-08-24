@@ -18,17 +18,19 @@
         "title": "Interview"
       },
       "id": "ID",
-      "interviewName": "Interview Name",
+      "interviewName": "नाम",
       "scheduledDate": "Scheduled Date",
       "startTime": "Start Time",
       "endTime": "End Time",
       "resceduled": "Resceduled",
-      "rescheduleDate": "Reschedule Date",
-      "rescheduleStartTime": "Reschedule Start Time",
-      "rescheduleEndTIme": "Reschedule End T Ime",
+      "rescheduleDate": "पुनर्निर्धारित तिथि",
+      "rescheduleStartTime": "पुनर्निर्धारित प्रारंभ समय",
+      "rescheduleEndTime": "पुनर्निर्धारित समाप्ति समय",
       "rescheduleApproved": "Reschedule Approved",
+      "interviewStatus": "Interview Status",
       "interviewBy": "Interview By",
-      "rescheduleApprovedBy": "Reschedule Approved By"
+      "rescheduleApprovedBy": "Reschedule Approved By",
+      "interviewFor": "Interview For"
     }
   }
 }
