@@ -50,5 +50,5 @@ export class InterviewComponent implements OnInit {
   }
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  images = [944, 1011, 984].map(n => `https://picsum.photos/id/${n}/900/500`);
+  // images = [944, 1011, 984].map(n => `https://picsum.photos/id/${n}/900/500`);
 }
