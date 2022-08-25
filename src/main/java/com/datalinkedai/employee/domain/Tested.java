@@ -3,8 +3,10 @@ package com.datalinkedai.employee.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Duration;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+// import java.util.HashSet;
+import java.util.List;
+// import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -45,7 +47,7 @@ public class Tested implements Serializable {
 
     @Field("questionList")
     @JsonIgnoreProperties(value = { "optionLists", "tested" }, allowSetters = true)
-    private Set<Questions> questionLists = new HashSet<>();
+    private List<Questions> questionLists = new ArrayList<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -140,11 +142,11 @@ public class Tested implements Serializable {
         this.expiryMonths = expiryMonths;
     }
 
-    public Set<Questions> getQuestionLists() {
+    public List<Questions> getQuestionLists() {
         return this.questionLists;
     }
 
-    public void setQuestionLists(Set<Questions> questions) {
+    public void setQuestionLists(List<Questions> questions) {
         if (this.questionLists != null) {
             this.questionLists.forEach(i -> i.setTested(null));
         }
@@ -154,7 +156,7 @@ public class Tested implements Serializable {
         this.questionLists = questions;
     }
 
-    public Tested questionLists(Set<Questions> questions) {
+    public Tested questionLists(List<Questions> questions) {
         this.setQuestionLists(questions);
         return this;
     }

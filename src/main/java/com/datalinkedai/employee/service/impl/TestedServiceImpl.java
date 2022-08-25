@@ -1,9 +1,15 @@
 package com.datalinkedai.employee.service.impl;
 
+import com.datalinkedai.employee.domain.Questions;
 import com.datalinkedai.employee.domain.Tested;
 import com.datalinkedai.employee.repository.TestedRepository;
 import com.datalinkedai.employee.service.TestedService;
+
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -87,5 +93,34 @@ public class TestedServiceImpl implements TestedService {
     public Mono<Void> delete(String id) {
         log.debug("Request to delete Tested : {}", id);
         return testedRepository.deleteById(id);
+    }
+
+    //Blocking
+    @Override
+    public Mono<Tested> getRandomizeQuestionsForTest(String testName)  throws Exception {
+        Tested test = testedRepository.getTestedByTestName(testName).toFuture().get();
+        Boolean flagTest = test.getRandomize();
+        //if only it is randomised then only go this block
+        if(flagTest) {
+            Integer totalQuestion =  test.getTotalQuestions();
+            List<Questions> questions = test.getQuestionLists();
+            Integer questionSize = questions.size();
+            Random rand = new Random();
+            if(totalQuestion >= questionSize) {
+                Collections.shuffle(questions, rand);
+                test.setQuestionLists(questions);
+            } else {
+                Collections.shuffle(questions, rand);
+                questions.subList(totalQuestion,questionSize);
+                test.setQuestionLists(questions);
+            }
+        } else {
+            Integer totalQuestion =  test.getTotalQuestions();
+            List<Questions> questions = test.getQuestionLists();
+            Integer questionSize = questions.size();
+            questions.subList(totalQuestion,questionSize);
+            test.setQuestionLists(questions);
+        }
+        return Mono.just(test);
     }
 }
