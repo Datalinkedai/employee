@@ -210,4 +210,21 @@ public class TestedResource {
                 ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build()
             );
     }
+
+    /**
+     * {@code GET /testeds/test/name/:testname} get the question according to the tested setup
+     * @param testName the testname for which the question needs to be provided
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the proper tested,
+     * or with status {@code 400 (Bad Request)} if the test name is not valid,
+     */
+    @GetMapping("/testeds/test/name/{testname}")
+    public Mono<ResponseEntity<Tested>> getRandomizeQuestionsForTest(@PathVariable("testname") String testName) {
+        log.debug("REST request to get Randomised Question from Test Name: {}", testName);
+        try {
+            return ResponseUtil.wrapOrNotFound(testedService.getRandomizeQuestionsForTest(testName));
+        } catch (Exception e) {
+            log.error("Randomise Question has an error: {}", e);
+            throw new BadRequestAlertException("Could Not get the Test Name Properly", ENTITY_NAME, "testNameInvalid");
+        }
+    }
 }

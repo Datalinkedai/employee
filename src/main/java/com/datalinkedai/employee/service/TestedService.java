@@ -62,4 +62,13 @@ public interface TestedService {
      * @return a Mono to signal the deletion
      */
     Mono<Void> delete(String id);
+    
+    /**
+     * If randomised flag is true return radomised test questions
+     * 
+     * @param testName Get the test name
+     * @return a Mono of Tested object with total test questions
+     * @exception tested object not found error
+     */
+    Mono<Tested> getRandomizeQuestionsForTest(String testName) throws Exception;
 }
