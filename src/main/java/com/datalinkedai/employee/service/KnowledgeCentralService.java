@@ -62,4 +62,12 @@ public interface KnowledgeCentralService {
      * @return a Mono to signal the deletion
      */
     Mono<Void> delete(String id);
+
+    /**
+     * Get the average of the Particular Candidate
+     * 
+     * @param candidateId from the API
+     * @return Knowledge Central Object
+     */
+    Mono<KnowledgeCentral> getKnowledgeCentralByCandiate(String candidateId) throws Exception;
 }
