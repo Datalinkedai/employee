@@ -1,14 +1,18 @@
 package com.datalinkedai.employee.service.impl;
 
+import com.datalinkedai.employee.domain.Candidate;
 import com.datalinkedai.employee.domain.Knowledge;
+import com.datalinkedai.employee.repository.CandidateRepository;
 import com.datalinkedai.employee.repository.KnowledgeRepository;
 import com.datalinkedai.employee.service.KnowledgeService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import com.datalinkedai.employee.exceptions.CandidateNotFoundException;
 
 /**
  * Service Implementation for managing {@link Knowledge}.
@@ -19,6 +23,9 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     private final Logger log = LoggerFactory.getLogger(KnowledgeServiceImpl.class);
 
     private final KnowledgeRepository knowledgeRepository;
+
+    @Autowired
+    private CandidateRepository candidateRepository;
 
     public KnowledgeServiceImpl(KnowledgeRepository knowledgeRepository) {
         this.knowledgeRepository = knowledgeRepository;
@@ -81,5 +88,17 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     public Mono<Void> delete(String id) {
         log.debug("Request to delete Knowledge : {}", id);
         return knowledgeRepository.deleteById(id);
+    }
+
+    @Override
+    public Mono<Knowledge> getKnowledgeByCandidateTaken(String candidateId) throws Exception {
+        Candidate candidate;
+        try {
+            candidate = candidateRepository.findById(candidateId).toFuture().get();
+        } catch (Exception e) {
+            log.error("Candidate not found by: {}, {}", candidateId, e);
+            throw new CandidateNotFoundException(candidateId);
+        } 
+        return knowledgeRepository.getKnowledgeByCandidateTaken(candidate);
     }
 }

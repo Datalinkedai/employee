@@ -62,4 +62,12 @@ public interface KnowledgeService {
      * @return a Mono to signal the deletion
      */
     Mono<Void> delete(String id);
+    /**
+     * Get the knowlegde of a particular candidate object
+     * 
+     * @param candidateId id of the particular candidate
+     * @return Knowledge object 
+     * @throws Exception
+     */
+    Mono<Knowledge> getKnowledgeByCandidateTaken(String candidateId) throws Exception;
 }
