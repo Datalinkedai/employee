@@ -1,6 +1,7 @@
 package com.datalinkedai.employee.service;
 
 import com.datalinkedai.employee.domain.Knowledge;
+import com.datalinkedai.employee.domain.Tested;
 import java.util.List;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -62,4 +63,20 @@ public interface KnowledgeService {
      * @return a Mono to signal the deletion
      */
     Mono<Void> delete(String id);
+    /**
+     * Get the knowlegde of a particular candidate object
+     * 
+     * @param candidateId id of the particular candidate
+     * @return Knowledge object 
+     * @throws Exception
+     */
+    Mono<Knowledge> getKnowledgeByCandidateTaken(String candidateId) throws Exception;
+
+    /**
+     * get knowledge for a particular test object
+     * @param TestedName name of the test object
+     * @return a particular test object
+     * @throws Exception
+     */
+    Mono<Knowledge> getKnowledgeByTests(String testedName) throws Exception;
 }

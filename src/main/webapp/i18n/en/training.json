@@ -15,7 +15,7 @@
         "question": "Are you sure you want to delete Training {{ id }}?"
       },
       "detail": {
-        "title": "Training"
+        "title": "Training  Detail"
       },
       "id": "ID",
       "startDate": "Start Date",
