@@ -230,8 +230,8 @@ public class KnowledgeResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
      *         , or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/knowledge/by/candidate/{candidateId}")
-    public Mono<ResponseEntity<Knowledge>> getKnowledgeByCandidateTaken(@PathVariable String candidateId) {
+    @GetMapping("/knowledge/by/candidate/{userName}")
+    public Mono<ResponseEntity<Knowledge>> getKnowledgeByCandidateTaken(@PathVariable(value= "userName") String candidateId) {
         log.debug("REST request to get KnowledgeByCandidate : {}", candidateId);
         try {
             return ResponseUtil.wrapOrNotFound(knowledgeService.getKnowledgeByCandidateTaken(candidateId));
@@ -249,11 +249,12 @@ public class KnowledgeResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
 
-    @GetMapping("/knowledge/by/test/{testedName}")
-    public Mono<ResponseEntity<Knowledge>> getKnowledgeByTests(@PathVariable String testedName) {
+    @GetMapping(value= "/knowledge/by/test/{testedName}", produces = MediaType.APPLICATION_NDJSON_VALUE)
+    public Flux<Knowledge> getKnowledgeByTests(@PathVariable String testedName) {
         log.debug("REST request to get KnowledgeByTest : {}", testedName);
         try {
-            return ResponseUtil.wrapOrNotFound(knowledgeService.getKnowledgeByTests(testedName));
+            // return ResponseUtil.wrapOrNotFound(knowledgeService.getKnowledgeByTests(testedName));
+            return knowledgeService.getKnowledgeByTests(testedName);
         } catch (TestNotFoundException e) {
             throw new BadRequestAlertException("Invalid Test Name", ENTITY_NAME, "invalidTestName");
         } catch (Exception e) {
