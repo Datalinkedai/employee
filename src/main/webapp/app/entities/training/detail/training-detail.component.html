@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="training">
-      <h2 data-cy="trainingDetailsHeading"><span jhiTranslate="employeeApp.training.detail.title">Training</span></h2>
+      <h3 data-cy="trainingDetailsHeading"><span jhiTranslate="employeeApp.training.detail.title">Training</span></h3>
 
       <hr />
 
@@ -9,7 +9,34 @@
 
       <jhi-alert></jhi-alert>
 
-      <dl class="row-md jh-entity-details">
+      <div class="card text-center mt-4">
+        <div class="card-body">
+          <h3 class="card-title">On the Job Training</h3>
+          <p class="card-text">Date : 23-Aug-2022 11:40 am</p>
+          <p class="card-text text-end">Basics</p>
+        </div>
+      </div>
+
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item mt-5">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Old Training Detail
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+            data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the
+              <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+            </div>
+        </div>
+      </div>
+
+
+
+
+      <!--<dl class="row-md jh-entity-details">
         <dt><span jhiTranslate="global.field.id">ID</span></dt>
         <dd>
           <span>{{ training.id }}</span>
@@ -52,7 +79,9 @@
 
       <button type="button" [routerLink]="['/training', training.id, 'edit']" class="btn btn-primary">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-      </button>
+      </button>-->
+
+
     </div>
   </div>
 </div>

@@ -24,7 +24,7 @@ public class Interview extends AbstractAuditingEntity implements Serializable {
     @Field("interview_name")
     private String interviewName;
 
-    @NotNull(message = "must not be null")
+    @NotNull(message = "Please Enter Schedule Date")
     @Field("scheduled_date")
     private LocalDate scheduledDate;
 

@@ -1,7 +1,8 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="knowledge">
-      <h2 data-cy="knowledgeDetailsHeading"><span jhiTranslate="employeeApp.knowledge.detail.title">Knowledge</span></h2>
+      <h3 data-cy="knowledgeDetailsHeading"><span jhiTranslate="employeeApp.knowledge.detail.title">Knowledge</span>
+      </h3>
 
       <hr />
 
@@ -9,7 +10,37 @@
 
       <jhi-alert></jhi-alert>
 
-      <dl class="row-md jh-entity-details">
+      <div class="card text-center mt-4">
+        <div class="card-body">
+          <h3 class="card-title">On the Job Training</h3>
+          <div class="row py-3 mt-4">
+            <div class="col-7">
+              <p class="card-text"> Marks : {{knowledge.result}}</p>
+              <div [ngClass]="{'background-color': knowledge.result?'green':'red'}">
+                <!-- {{knowledge.result ? 'Pass':'Fail'}} -->
+              </div>
+            </div>
+            <div class="col-3">
+              <p class="card-text">Grade : A</p>
+            </div>
+            <p class="card-text mt-4">Test taken on : 26-Aug-2022, 11:45 am</p>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-info d-grid gap-2 col-3 mx-auto mt-5">
+        <span jhiTranslate="employeeApp.knowledge.certificate">Download Certificate</span>
+        <div *ngIf="knowledge.certificate">
+          <a (click)="openFile(knowledge.certificate, knowledge.certificateContentType)">
+            <img [src]="'data:' + knowledge.certificateContentType + ';base64,' + knowledge.certificate"
+              style="max-width: 100%" alt="knowledge image" />
+          </a>
+          {{ knowledge.certificateContentType }}, {{ byteSize(knowledge.certificate) }}
+        </div>
+      </button>
+
+
+      <!-- <dl class="row-md jh-entity-details">
         <dt><span jhiTranslate="global.field.id">ID</span></dt>
         <dd>
           <span>{{ knowledge.id }}</span>
@@ -55,7 +86,7 @@
 
       <button type="button" [routerLink]="['/knowledge', knowledge.id, 'edit']" class="btn btn-primary">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-      </button>
+      </button>  -->
     </div>
   </div>
 </div>

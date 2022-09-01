@@ -1,6 +1,7 @@
 package com.datalinkedai.employee.web.rest;
 
 import com.datalinkedai.employee.domain.KnowledgeCentral;
+import com.datalinkedai.employee.exceptions.CandidateNotFoundException;
 import com.datalinkedai.employee.repository.KnowledgeCentralRepository;
 import com.datalinkedai.employee.service.KnowledgeCentralService;
 import com.datalinkedai.employee.web.rest.errors.BadRequestAlertException;
@@ -213,5 +214,17 @@ public class KnowledgeCentralResource {
             .map(result ->
                 ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build()
             );
+    }
+    @GetMapping("/knowledge-centrals/by/candidate/{candidateId}")
+    public Mono<ResponseEntity<KnowledgeCentral>> getKnowledgeCentralByCandidate(@PathVariable String candidateId){
+        log.debug("REST request to get KnowledgeCentralByCandidate : {}", candidateId);
+        try {
+            return ResponseUtil.wrapOrNotFound(knowledgeCentralService.getKnowledgeCentralByCandiate(candidateId));
+        } catch (CandidateNotFoundException e) {
+            throw new BadRequestAlertException("Invalid Candidate ID", ENTITY_NAME, "invalidCandidateId");
+        } catch (Exception e) {
+            log.error("Error : {}", e);
+            throw new BadRequestAlertException("Record Not Found", ENTITY_NAME, "recNotFound");
+        }
     }
 }
