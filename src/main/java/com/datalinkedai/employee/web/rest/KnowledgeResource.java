@@ -1,6 +1,7 @@
 package com.datalinkedai.employee.web.rest;
 
 import com.datalinkedai.employee.domain.Knowledge;
+import com.datalinkedai.employee.exceptions.TestNotFoundException;
 import com.datalinkedai.employee.repository.KnowledgeRepository;
 import com.datalinkedai.employee.service.KnowledgeService;
 import com.datalinkedai.employee.web.rest.errors.BadRequestAlertException;
@@ -209,5 +210,24 @@ public class KnowledgeResource {
             .map(result ->
                 ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build()
             );
+    }
+
+    /**
+     * {@code GET "/knowledge/by/test/{testedName}" : get the "testedName"
+     * @param testedName get test name of a particular test object
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
+     */
+
+    @GetMapping("/knowledge/by/test/{testedName}")
+    public Mono<ResponseEntity<Knowledge>> getKnowledgeByTests(@PathVariable String testedName) {
+        log.debug("REST request to get KnowledgeByTest : {}", testedName);
+        try {
+            return ResponseUtil.wrapOrNotFound(knowledgeService.getKnowledgeByTests(testedName));
+        } catch (TestNotFoundException e) {
+            throw new BadRequestAlertException("Invalid Test Name", ENTITY_NAME, "invalidTestName");
+        } catch (Exception e) {
+            log.error("Error : {}", e);
+            throw new BadRequestAlertException("Record Not Found", ENTITY_NAME, "recNotFound");
+        }
     }
 }

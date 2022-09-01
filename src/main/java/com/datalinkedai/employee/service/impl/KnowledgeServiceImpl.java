@@ -1,11 +1,15 @@
 package com.datalinkedai.employee.service.impl;
 
 import com.datalinkedai.employee.domain.Knowledge;
+import com.datalinkedai.employee.domain.Tested;
+import com.datalinkedai.employee.exceptions.TestNotFoundException;
 import com.datalinkedai.employee.repository.KnowledgeRepository;
+import com.datalinkedai.employee.repository.TestedRepository;
 import com.datalinkedai.employee.service.KnowledgeService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,6 +23,9 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     private final Logger log = LoggerFactory.getLogger(KnowledgeServiceImpl.class);
 
     private final KnowledgeRepository knowledgeRepository;
+
+    @Autowired
+    private TestedRepository testedRepository;
 
     public KnowledgeServiceImpl(KnowledgeRepository knowledgeRepository) {
         this.knowledgeRepository = knowledgeRepository;
@@ -81,5 +88,17 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     public Mono<Void> delete(String id) {
         log.debug("Request to delete Knowledge : {}", id);
         return knowledgeRepository.deleteById(id);
+    }
+
+    @Override
+    public Mono<Knowledge> getKnowledgeByTests(String testedName) throws Exception {
+        Tested test;
+        try {
+            test = testedRepository.findById(testedName).toFuture().get();
+        } catch (Exception e) {
+            log.error("Test not found by: {}, {}", testedName, e);
+            throw new TestNotFoundException(testedName);
+        }
+        return knowledgeRepository.getKnowledgeByTests(test);
     }
 }
