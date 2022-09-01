@@ -100,7 +100,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     public Mono<Knowledge> getKnowledgeByCandidateTaken(String candidateId) throws Exception {
         Candidate candidate;
         try {
-            candidate = candidateRepository.findById(candidateId).toFuture().get();
+            candidate = candidateRepository.getCandidateByUserName(candidateId).toFuture().get();
         } catch (Exception e) {
             log.error("Candidate not found by: {}, {}", candidateId, e);
             throw new CandidateNotFoundException(candidateId);
@@ -109,14 +109,14 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     }
 
     @Override
-    public Mono<Knowledge> getKnowledgeByTests(String testedName) throws Exception {
+    public Flux<Knowledge> getKnowledgeByTests(String testedName) throws Exception {
         Tested test;
         try {
-            test = testedRepository.findById(testedName).toFuture().get();
+            test = testedRepository.getTestedByTestName(testedName).toFuture().get();
+            return knowledgeRepository.getKnowledgeByTests(test);
         } catch (Exception e) {
             log.error("Test not found by: {}, {}", testedName, e);
             throw new TestNotFoundException(testedName);
         }
-        return knowledgeRepository.getKnowledgeByTests(test);
     }
 }

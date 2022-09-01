@@ -78,5 +78,5 @@ public interface KnowledgeService {
      * @return a particular test object
      * @throws Exception
      */
-    Mono<Knowledge> getKnowledgeByTests(String testedName) throws Exception;
+    Flux<Knowledge> getKnowledgeByTests(String testedName) throws Exception;
 }
