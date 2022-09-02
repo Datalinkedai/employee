@@ -1,4 +1,166 @@
 <div>
+  <h2>
+    <span jhiTranslate="employeeApp.knowledge.home.title">Knowledges</span>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="employeeApp.knowledge.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-knowledge"
+        [routerLink]="['/knowledge/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="employeeApp.knowledge.home.createLabel"> Create a new Knowledge </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="knowledges?.length === 0">
+    <span jhiTranslate="employeeApp.knowledge.home.notFound">No knowledges found</span>
+  </div>
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="by-employee-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#by-employee-tab-pane"
+        type="button"
+        role="tab"
+        aria-controls="by-employee-tab-pane"
+        aria-selected="true"
+      >
+        By Employee
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="today-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#today-tab-pane"
+        type="button"
+        role="tab"
+        aria-controls="today-tab-pane"
+        aria-selected="false"
+      >
+        Today
+      </button>
+    </li>
+  </ul>
+
+  <!-- <div class="row pb-3">
+    <div class="col-xs-12 col-md-5 offset-xl-2 col-xl-4 p-2">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">@</span>
+        <input type="text" class="form-control" placeholder="training" aria-label="Username"
+          aria-describedby="basic-addon1">
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-5 col-xl-4 p-2">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">@</span>
+        <input type="text" class="form-control" placeholder="user" aria-label="Username"
+          aria-describedby="basic-addon1">
+      </div>
+    </div> -->
+  <!-- <div class="col-xs-12 col-md-2 col-xl-2 p-2">
+      <button class="btn btn-primary" jhiTranslate="employeeApp.post.home.search"></button>
+    </div> -->
+  <!-- </div> -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="by-employee-tab-pane" role="tabpanel" aria-labelledby="by-employee-tab" tabindex="0">
+      <h3>By Employee</h3>
+      <div class="table-responsive" id="entities" *ngIf="knowledges && knowledges.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+          <thead>
+            <tr>
+              <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+              <th scope="col"><span jhiTranslate="employeeApp.knowledge.result">Result</span></th>
+              <th scope="col"><span jhiTranslate="employeeApp.knowledge.testTaken">Test Taken</span></th>
+              <th scope="col"><span jhiTranslate="employeeApp.knowledge.certificate">Certificate</span></th>
+              <th scope="col"><span jhiTranslate="employeeApp.knowledge.tests">Tests</span></th>
+              <th scope="col"><span jhiTranslate="employeeApp.knowledge.candidateTaken">Candidate Taken</span></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let knowledge of knowledges; trackBy: trackId" data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/knowledge', knowledge.id, 'view']">{{ knowledge.id }}</a>
+              </td>
+              <td>{{ knowledge.result }}</td>
+              <td>{{ knowledge.testTaken | formatMediumDatetime }}</td>
+              <td>
+                <a *ngIf="knowledge.certificate" (click)="openFile(knowledge.certificate, knowledge.certificateContentType)">
+                  <img
+                    [src]="'data:' + knowledge.certificateContentType + ';base64,' + knowledge.certificate"
+                    style="max-height: 30px"
+                    alt="knowledge image"
+                  />
+                </a>
+                <span *ngIf="knowledge.certificate">{{ knowledge.certificateContentType }}, {{ byteSize(knowledge.certificate) }}</span>
+              </td>
+              <td>
+                <div *ngIf="knowledge.tests">
+                  <a [routerLink]="['/tested', knowledge.tests?.id, 'view']">{{ knowledge.tests?.id }}</a>
+                </div>
+              </td>
+              <td>
+                <div *ngIf="knowledge.candidateTaken">
+                  <a [routerLink]="['/candidate', knowledge.candidateTaken?.id, 'view']">{{ knowledge.candidateTaken?.id }}</a>
+                </div>
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <button
+                    type="submit"
+                    [routerLink]="['/knowledge', knowledge.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </button>
+
+                  <button
+                    type="submit"
+                    [routerLink]="['/knowledge', knowledge.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </button>
+
+                  <button type="submit" (click)="delete(knowledge)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="today-tab-pane" role="tabpanel" aria-labelledby="today-tab" tabindex="0">
+      <h3>User</h3>
+    </div>
+  </div>
+
+  <!--to Comment -->
+
+  <!-- <div>
   <h2 id="page-heading" data-cy="KnowledgeHeading">
     <span jhiTranslate="employeeApp.knowledge.home.title">Knowledges</span>
 
@@ -100,4 +262,5 @@
       </tbody>
     </table>
   </div>
+</div> -->
 </div>
