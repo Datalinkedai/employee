@@ -91,4 +91,88 @@
       </tbody>
     </table>
   </div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="by-trainer-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#by-trainer-tab-pane"
+        type="button"
+        role="tab"
+        aria-controls="by-trainer-tab-pane"
+        aria-selected="true"
+      >
+        Trainer
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="user-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#user-tab-pane"
+        type="button"
+        role="tab"
+        aria-controls="user-tab-pane"
+        aria-selected="false"
+      >
+        User
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="range-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#range-tab-pane"
+        type="button"
+        role="tab"
+        aria-controls="range-tab-pane"
+        aria-selected="false"
+      >
+        Range
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active md-2" id="by-trainer-tab-pane" role="tabpanel" aria-labelledby="by-trainer-tab" tabindex="0">
+      <div class="table-responsive" id="entities--1">
+        <table class="table table-striped" aria-describedby="page-heading">
+          <thead>
+            <tr>
+              <p>Trainer</p>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="user-tab-pane" role="tabpanel" aria-labelledby="user-tab" tabindex="0">
+      <div class="table-responsive" id="entities--1">
+        <table class="table table-striped" aria-describedby="page-heading">
+          <thead>
+            <tr>
+              <p>User</p>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="range-tab-pane" role="tabpanel" aria-labelledby="range-tab" tabindex="0">
+      <div class="table-responsive" id="entities--1">
+        <table class="table table-striped" aria-describedby="page-heading">
+          <thead>
+            <tr>
+              <p>Range</p>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <div class="card" mt-5>
+      <div class="card-body">
+        <p class="card-text">Table</p>
+      </div>
+    </div>
+  </div>
 </div>

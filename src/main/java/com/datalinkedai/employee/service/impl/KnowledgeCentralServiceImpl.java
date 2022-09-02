@@ -1,11 +1,15 @@
 package com.datalinkedai.employee.service.impl;
 
+import com.datalinkedai.employee.domain.Candidate;
 import com.datalinkedai.employee.domain.KnowledgeCentral;
+import com.datalinkedai.employee.exceptions.CandidateNotFoundException;
+import com.datalinkedai.employee.repository.CandidateRepository;
 import com.datalinkedai.employee.repository.KnowledgeCentralRepository;
 import com.datalinkedai.employee.service.KnowledgeCentralService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -18,11 +22,11 @@ public class KnowledgeCentralServiceImpl implements KnowledgeCentralService {
 
     private final Logger log = LoggerFactory.getLogger(KnowledgeCentralServiceImpl.class);
 
-    private final KnowledgeCentralRepository knowledgeCentralRepository;
+    @Autowired
+    private KnowledgeCentralRepository knowledgeCentralRepository;
 
-    public KnowledgeCentralServiceImpl(KnowledgeCentralRepository knowledgeCentralRepository) {
-        this.knowledgeCentralRepository = knowledgeCentralRepository;
-    }
+    @Autowired
+    private CandidateRepository candidateRepository;
 
     @Override
     public Mono<KnowledgeCentral> save(KnowledgeCentral knowledgeCentral) {
@@ -72,5 +76,17 @@ public class KnowledgeCentralServiceImpl implements KnowledgeCentralService {
     public Mono<Void> delete(String id) {
         log.debug("Request to delete KnowledgeCentral : {}", id);
         return knowledgeCentralRepository.deleteById(id);
+    }
+
+    @Override
+    public Mono<KnowledgeCentral> getKnowledgeCentralByCandiate(String candidateId) throws Exception {
+        Candidate candidate;
+        try {
+            candidate = candidateRepository.findById(candidateId).toFuture().get();
+        } catch (Exception e) {
+            log.error("Candidate not found by: {}, {}", candidateId, e);
+            throw new CandidateNotFoundException(candidateId);
+        } 
+        return knowledgeCentralRepository.getKnowledgeCentralByCandidateTaken(candidate);
     }
 }

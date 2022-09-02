@@ -25,7 +25,8 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.reactive.ResponseUtil;
 
 /**
- * REST controller for managing {@link com.datalinkedai.employee.domain.Interview}.
+ * REST controller for managing
+ * {@link com.datalinkedai.employee.domain.Interview}.
  */
 @RestController
 @RequestMapping("/api")
@@ -51,7 +52,9 @@ public class InterviewResource {
      * {@code POST  /interviews} : Create a new interview.
      *
      * @param interview the interview to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new interview, or with status {@code 400 (Bad Request)} if the interview has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new interview, or with status {@code 400 (Bad Request)} if
+     *         the interview has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/interviews")
@@ -77,11 +80,14 @@ public class InterviewResource {
     /**
      * {@code PUT  /interviews/:id} : Updates an existing interview.
      *
-     * @param id the id of the interview to save.
+     * @param id        the id of the interview to save.
      * @param interview the interview to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated interview,
-     * or with status {@code 400 (Bad Request)} if the interview is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the interview couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated interview,
+     *         or with status {@code 400 (Bad Request)} if the interview is not
+     *         valid,
+     *         or with status {@code 500 (Internal Server Error)} if the interview
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/interviews/{id}")
@@ -117,14 +123,18 @@ public class InterviewResource {
     }
 
     /**
-     * {@code PATCH  /interviews/:id} : Partial updates given fields of an existing interview, field will ignore if it is null
+     * {@code PATCH  /interviews/:id} : Partial updates given fields of an existing
+     * interview, field will ignore if it is null
      *
-     * @param id the id of the interview to save.
+     * @param id        the id of the interview to save.
      * @param interview the interview to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated interview,
-     * or with status {@code 400 (Bad Request)} if the interview is not valid,
-     * or with status {@code 404 (Not Found)} if the interview is not found,
-     * or with status {@code 500 (Internal Server Error)} if the interview couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated interview,
+     *         or with status {@code 400 (Bad Request)} if the interview is not
+     *         valid,
+     *         or with status {@code 404 (Not Found)} if the interview is not found,
+     *         or with status {@code 500 (Internal Server Error)} if the interview
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/interviews/{id}", consumes = { "application/json", "application/merge-patch+json" })
@@ -163,7 +173,8 @@ public class InterviewResource {
     /**
      * {@code GET  /interviews} : get all the interviews.
      *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of interviews in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of interviews in body.
      */
     @GetMapping("/interviews")
     public Mono<List<Interview>> getAllInterviews() {
@@ -173,6 +184,7 @@ public class InterviewResource {
 
     /**
      * {@code GET  /interviews} : get all the interviews as a stream.
+     *
      * @return the {@link Flux} of interviews.
      */
     @GetMapping(value = "/interviews", produces = MediaType.APPLICATION_NDJSON_VALUE)
@@ -185,7 +197,8 @@ public class InterviewResource {
      * {@code GET  /interviews/:id} : get the "id" interview.
      *
      * @param id the id of the interview to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the interview, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the interview, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/interviews/{id}")
     public Mono<ResponseEntity<Interview>> getInterview(@PathVariable String id) {
@@ -209,5 +222,17 @@ public class InterviewResource {
             .map(result ->
                 ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id)).build()
             );
+    }
+
+    /**
+     * @param id
+     * @param status
+     * @return the id of candidate and status of interview scheduled
+     */
+    @GetMapping("/interviews/schedule/candidate/{candidateId}/status/{status}")
+    public Mono<Integer> getInterviewScheduledForCandidate(@PathVariable String candidateId, @PathVariable String status) {
+        log.debug("REST request to get Interview : {}", candidateId);
+        // Mono<Interview> interview = interviewService.findOne(id);
+        return interviewService.getInterviewScheduledForCandidate(candidateId, status);
     }
 }
